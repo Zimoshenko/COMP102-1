@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.params=
+comment0.target=TricolourFlagDrawer()
+comment0.text=Constructor\:\ set\ up\ user\ interface
+comment1.params=
+comment1.target=void\ doCore()
+comment1.text=\r\n\ asks\ user\ for\ a\ position\ and\ three\ colours,\ then\ calls\ the\ \r\n\ drawThreeColourFlagCore\ method,\ passing\ the\ appropriate\ arguments\r\n\r\n\ CORE\r\n
+comment2.params=left\ top\ stripe1\ stripe2\ stripe3
+comment2.target=void\ drawThreeColourFlagCore(double,\ double,\ java.awt.Color,\ java.awt.Color,\ java.awt.Color)
+comment2.text=\r\n\ draws\ a\ three\ colour\ flag\ consisting\ of\ three\ vertical\ equal-width\ stripes\r\n\ at\ the\ given\ position\r\n\r\n\ CORE\r\n
+comment3.params=
+comment3.target=void\ doCompletion()
+comment3.text=\r\n\ draws\ multiple\ flag\ made\ up\ of\ three\ equal\ size\ stripes\ by\ calling\ the\r\n\ drawThreeColourFlagCompletion\ method,\ passing\ the\ appropriate\ arguments\r\n\r\n\ COMPLETION\r\n
+comment4.params=verticalMode\ left\ top\ stripe1\ stripe2\ stripe3
+comment4.target=void\ drawThreeColourFlagCompletion(boolean,\ double,\ double,\ java.awt.Color,\ java.awt.Color,\ java.awt.Color)
+comment4.text=\r\n\ draws\ a\ three\ colour\ flag\ consisting\ of\ three\ equal-size\ stripes\r\n\ at\ the\ given\ position\r\n\ The\ stripes\ can\ be\ either\ vertical\ or\ horizontal\r\n\r\n\ COMPLETION\r\n
+numComments=5

@@ -8,7 +8,6 @@
  * ID:
  */
 
-
 import ecs100.*;
 import java.awt.Color;
 
@@ -32,66 +31,78 @@ import java.awt.Color;
 
 public class MethodParametersExercise {
 
-    /** Constructor: set up the user interface (already written for you) */ 
-    public MethodParametersExercise(){
-           UI.initialise();
-           UI.addButton("Clear", UI::clearPanes );
-           UI.addButton("NameTags", this::doNameTags );
-           UI.addButton("BottleSong", this::doBottleSong );
-           UI.addButton("SignalFlag", this::doSignalZeroFlag );
-           UI.addButton("Quit", UI::quit );
+    /** Constructor: set up the user interface (already written for you) */
+    public MethodParametersExercise() {
+        UI.initialise();
+        UI.addButton("Clear", UI::clearPanes);
+        UI.addButton("NameTags", this::doNameTags);
+        //UI.addButton("BottleSong", this::doBottleSong);
+        //UI.addButton("SignalFlag", this::doSignalZeroFlag);
+        UI.addButton("Quit", UI::quit);
     }
 
     /** Prints out a series of nametags for workshop participants.
         *  Each nametag has the participant's name and workshop ID number.
         */
-    public void doNameTags(){
-           this.printNameTag("John Smith", 325);
-           this.printNameTag("Jason Strickland",218);
-           this.printNameTag("Jane Salisor", 15);
-           this.printNameTag("Jie Song", 123);
-           this.printNameTag("Julia Sargeant", 248);
-           UI.println();
+    public void doNameTags() {
+        this.printNameTag("John Smith", 325);
+        this.printNameTag("Jason Strickland", 218);
+        this.printNameTag("Jane Salisor", 15);
+        this.printNameTag("Jie Song", 123);
+        this.printNameTag("Julia Sargeant", 248);
+        UI.println();
     }
 
     /** Prints a nametag (as in Lab Exercise 0)
         *  A nametag has the participant's name and workshop ID number.
         */
-    public void printNameTag(String name, int number ){
-           /*# YOUR CODE HERE */
-           UI.println("=========================");//width should be 25
-           UI.println("|Name:                  |");
-           String firstLine = ("|"+ name);
-           while ((firstLine.length()<24)) {
-            firstLine = (firstLine+ " ");
-          }if (firstLine.length()<25) {
-            
-          }
-           
+    public void printNameTag(String name, int number) {
+        /*# YOUR CODE HERE */
+        UI.println("=========================");//width should be 25
+        UI.println("|Name:                  |");
+        String firstLine = ("|" + name);
+        while ((firstLine.length() < 24)) {
+            firstLine = (firstLine + " ");
+        }
+        if (firstLine.length() < 25) {
+            firstLine = (firstLine + "|");
+            UI.println(firstLine);
 
+        }
+        String secondLine = ("|# " + number);
+        while (secondLine.length()<24) {
+            secondLine = (secondLine + " ");
+        }if (secondLine.length() < 25) {
+            secondLine = (secondLine + "|");
+            UI.println(secondLine);
+        }
+        UI.println("=========================");
+        UI.println("");
+
+        
 
 
     }
 
-    public void doBottleSong(){
-           this.bottleSongVerse(10); // prints verse with 10 bottles...
-           this.bottleSongVerse(9);
-           this.bottleSongVerse(8);
-           this.bottleSongVerse(7);
-           this.bottleSongVerse(6);
-           this.bottleSongVerse(5);
-           this.bottleSongVerse(4);
-           this.bottleSongVerse(3);
-           this.bottleSongVerse(2);
-           UI.println();
-           UI.println(); 
+/*    public void doBottleSong() {
+        this.bottleSongVerse(10); // prints verse with 10 bottles...
+        this.bottleSongVerse(9);
+        this.bottleSongVerse(8);
+        this.bottleSongVerse(7);
+        this.bottleSongVerse(6);
+        this.bottleSongVerse(5);
+        this.bottleSongVerse(4);
+        this.bottleSongVerse(3);
+        this.bottleSongVerse(2);
+        UI.println();
+        UI.println();
     }
-
+*/
     /** bottleSongVerse
         * The verses uses the number of bottles remaining
         */
-    public void bottleSongVerse(/*# YOUR CODE HERE */ ){
-           /*# YOUR CODE HERE */
+    public void bottleSongVerse(/*# YOUR CODE HERE */ ) {
+        /*# YOUR CODE HERE */
 
     }
 
@@ -100,36 +111,35 @@ public class MethodParametersExercise {
         *    dots on the "5" side of ordinary dice).
         *    See http://www.navy.mil/navydata/communications/flags/num0.gif
         */
-    public void doSignalZeroFlag(){
-           //variables
-           double flagSize = UI.askDouble("Size of flag:");
-           double flagLeft = 200;
-           double flagTop = 100;
-           double centerX = flagLeft+flagSize/2.0;
-           double centerY = flagTop+flagSize/2.0;
-           double offset = 0.3*flagSize;
-           double crossSize = 0.16*flagSize;
-           double crossThick = 0.05*flagSize;
+/*    public void doSignalZeroFlag() {
+        //variables
+        double flagSize = UI.askDouble("Size of flag:");
+        double flagLeft = 200;
+        double flagTop = 100;
+        double centerX = flagLeft + flagSize / 2.0;
+        double centerY = flagTop + flagSize / 2.0;
+        double offset = 0.3 * flagSize;
+        double crossSize = 0.16 * flagSize;
+        double crossThick = 0.05 * flagSize;
 
-           //flag background
-           UI.setColor(Color.white);
-           UI.fillRect(flagLeft, flagTop, flagSize, flagSize);
-           UI.setColor(Color.black);
-           UI.drawRect(flagLeft, flagTop, flagSize, flagSize);
+        //flag background
+        UI.setColor(Color.white);
+        UI.fillRect(flagLeft, flagTop, flagSize, flagSize);
+        UI.setColor(Color.black);
+        UI.drawRect(flagLeft, flagTop, flagSize, flagSize);
 
-           //draw crosses
-           this.drawCross(centerX, centerY, crossSize, crossThick);                         //first cross
-           this.drawCross(centerX-offset, centerY-offset, crossSize, crossThick);  //top left cross
-           this.drawCross(centerX+offset, centerY-offset, crossSize, crossThick);  //top right cross
-           this.drawCross(centerX-offset, centerY+offset, crossSize, crossThick);  //bottom left cross
-           this.drawCross(centerX+offset, centerY+offset, crossSize, crossThick);  //bottom right cross
+        //draw crosses
+        this.drawCross(centerX, centerY, crossSize, crossThick); //first cross
+        this.drawCross(centerX - offset, centerY - offset, crossSize, crossThick); //top left cross
+        this.drawCross(centerX + offset, centerY - offset, crossSize, crossThick); //top right cross
+        this.drawCross(centerX - offset, centerY + offset, crossSize, crossThick); //bottom left cross
+        this.drawCross(centerX + offset, centerY + offset, crossSize, crossThick); //bottom right cross
     }
-
+*/
     /** drawCross is passed the position of the centre of the cross and its dimensions */
-    public void drawCross(/*# YOUR CODE HERE */ ){
-           /*# YOUR CODE HERE */
+    public void drawCross(/*# YOUR CODE HERE */ ) {
+        /*# YOUR CODE HERE */
 
     }
-
 
 }
