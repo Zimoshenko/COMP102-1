@@ -62,6 +62,11 @@ public class MethodParametersExercise {
            UI.println("=========================");//width should be 25
            UI.println("|Name:                  |");
            String firstLine = ("|"+ name);
+           while ((firstLine.length()<24)) {
+            firstLine = (firstLine+ " ");
+          }if (firstLine.length()<25) {
+            
+          }
            
 
 
