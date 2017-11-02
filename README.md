@@ -1,1 +1,1 @@
-# COMP102
+# Assignments for COMP102
