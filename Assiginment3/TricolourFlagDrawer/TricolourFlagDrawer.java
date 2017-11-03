@@ -24,6 +24,7 @@ public class TricolourFlagDrawer {
         UI.addButton("Clear", UI::clearPanes);
         UI.addButton("Core", this::doCore);
         UI.addButton("Completion", this::doCompletion);
+        UI.addButton("Challenge", this::doChallenge);
         UI.addButton("Quit", UI::quit);
     }
 
@@ -41,6 +42,16 @@ public class TricolourFlagDrawer {
         Color stripe2 = JColorChooser.showDialog(null, "Second Stripe", Color.white);
         Color stripe3 = JColorChooser.showDialog(null, "Third Stripe", Color.white);
         this.drawThreeColourFlagCore(left, top, stripe1, stripe2, stripe3);
+    }
+
+    public void Completion() {//
+        this.drawThreeColourFlagCompletion(true, 20, 50, Color.black, Color.yellow, Color.red); // Belgium, vertical
+        this.drawThreeColourFlagCompletion(false, 250, 100, Color.black, Color.red, Color.yellow); // Germany
+        this.drawThreeColourFlagCompletion(true, 140, 430, Color.blue, Color.white, Color.red); // France
+        this.drawThreeColourFlagCompletion(true, 290, 270, Color.red, Color.yellow, Color.green.darker()); // Guinea
+        this.drawThreeColourFlagCompletion(false, 470, 30, Color.red, Color.white, Color.blue); // The Netherlands
+        this.drawThreeColourFlagCompletion(false, 50, 250, Color.white, Color.blue, Color.red); // Russia        
+
     }
 
     /**
@@ -68,13 +79,16 @@ public class TricolourFlagDrawer {
         *
         * COMPLETION
         */
+
     public void doCompletion() {
+
         this.drawThreeColourFlagCompletion(true, 20, 50, Color.black, Color.yellow, Color.red); // Belgium, vertical
         this.drawThreeColourFlagCompletion(false, 250, 100, Color.black, Color.red, Color.yellow); // Germany
         this.drawThreeColourFlagCompletion(true, 140, 430, Color.blue, Color.white, Color.red); // France
         this.drawThreeColourFlagCompletion(true, 290, 270, Color.red, Color.yellow, Color.green.darker()); // Guinea
         this.drawThreeColourFlagCompletion(false, 470, 30, Color.red, Color.white, Color.blue); // The Netherlands
         this.drawThreeColourFlagCompletion(false, 50, 250, Color.white, Color.blue, Color.red); // Russia
+
     }
 
     /**
@@ -84,7 +98,8 @@ public class TricolourFlagDrawer {
         *
         * COMPLETION
         */
-    public void drawThreeColourFlagCompletion(boolean verticalMode, double left, double top, Color stripe1, Color stripe2, Color stripe3) {
+    public void drawThreeColourFlagCompletion(boolean verticalMode, double left, double top, Color stripe1,
+            Color stripe2, Color stripe3) {
         /*# YOUR CODE HERE */
         double width = 50.0;
         double height = 2 * width;
@@ -97,12 +112,12 @@ public class TricolourFlagDrawer {
             UI.fillRect(left + 2 * width, top, width, height);
             UI.setColor(Color.black);
             UI.drawRect(left, top, width * 3, height);
-        }else{
+        } else {
             /*double _width = width;
             width = height;
             height = _width; */
             width = 150;
-            height = 33.3;
+            height = (100 / 3);
             UI.setColor(stripe1);
             UI.fillRect(left, top, width, height);
             UI.setColor(stripe2);
@@ -112,6 +127,43 @@ public class TricolourFlagDrawer {
             UI.setColor(Color.black);
             UI.drawRect(left, top, width, height * 3);
         }
+
+    }
+
+    public void doChallenge() {
+        this.drawGrid();
+
+    }
+
+    public void drawGrid() {
+
+        /*
+        -print a 3*3 grid
+         height=300, width=450\
+         each block width = 150, height = 100
+        */
+        UI.setColor(Color.black);
+        double left = 0;
+        double top = 0;
+        //UI.drawRect(left, top, 450, 300);//the outside border
+        double width = 450;
+        double height = 300;
+        double _width = (width/3.0);
+        double _height = (height/3.0);
+        while (_width <= width) {
+            UI.drawRect(left, top, _width, height);
+            _width = _width + (width / 3.0);
+        }
+        while (_height <= height){
+            UI.drawRect(left, top, width, _height);
+            _height = _height +(height/3.0);
+
+        }
+
+        
+    }
+
+    public void printName(int row, int column, String flagName) {
 
     }
 
