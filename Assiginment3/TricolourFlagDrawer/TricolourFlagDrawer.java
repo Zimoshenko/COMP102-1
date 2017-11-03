@@ -148,19 +148,18 @@ public class TricolourFlagDrawer {
         //UI.drawRect(left, top, 450, 300);//the outside border
         double width = 450;
         double height = 300;
-        double _width = (width/3.0);
-        double _height = (height/3.0);
+        double _width = (width / 3.0);
+        double _height = (height / 3.0);
         while (_width <= width) {
             UI.drawRect(left, top, _width, height);
             _width = _width + (width / 3.0);
         }
-        while (_height <= height){
+        while (_height <= height) {
             UI.drawRect(left, top, width, _height);
-            _height = _height +(height/3.0);
+            _height = _height + (height / 3.0);
 
         }
 
-        
     }
 
     public void printName(int row, int column, String flagName) {
