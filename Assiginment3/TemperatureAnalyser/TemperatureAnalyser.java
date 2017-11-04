@@ -18,35 +18,35 @@ import java.util.*;
  *    How the temperatures rose and fell over the day.
  *    The maximum and the minimum temperature levels during the day.
  */
-public class TemperatureAnalyser{
+public class TemperatureAnalyser {
 
     /** Constructor: set up user interface */
-    public TemperatureAnalyser(){
-           UI.initialise();
-           UI.addButton("Analyse", this::doAnalyse );
-           UI.addButton("Quit", UI::quit );
+    public TemperatureAnalyser() {
+        UI.initialise();
+        UI.addButton("Analyse", this::doAnalyse);
+        UI.addButton("Quit", UI::quit);
     }
 
     /* doAnalyse reads a sequence of temperature levels from the user and prints out
         *    average, maximum, and minimum level and plots all the levels
         *    by calling appropriate methods
         */
-    public void doAnalyse(){
-           UI.clearPanes();
-           ArrayList<Double> listOfNumbers = UI.askNumbers("Enter levels, end with 'done': ");
-           if (listOfNumbers.size() > 0) {
-                  this.printAverage(listOfNumbers);
-                  this.plotLevels(listOfNumbers);
+    public void doAnalyse() {
+        UI.clearPanes();
+        ArrayList<Double> listOfNumbers = UI.askNumbers("Enter levels, end with 'done': ");
+        // ArrayList<Double> listOfNumbers = {1,1,4,5,1,4,1,9,1,9};
+        if (listOfNumbers.size() > 0) {
+            this.printAverage(listOfNumbers);
+            this.plotLevels(listOfNumbers);
 
-	    double max = this.maximumOfList(listOfNumbers);
-	    double min = this.minimumOfList(listOfNumbers);
-	    
-                  UI.println("Maximum level was: " + max);
-                  UI.println("Minimum level was: " + min);
-           }
-           else {
-                  UI.println("No readings");
-           }
+            double max = this.maximumOfList(listOfNumbers);
+            double min = this.minimumOfList(listOfNumbers);
+
+            UI.println("Maximum level was: " + max);
+            UI.println("Minimum level was: " + min);
+        } else {
+            UI.println("No readings");
+        }
     }
 
     /** Print the average level
@@ -56,8 +56,16 @@ public class TemperatureAnalyser{
         *  CORE
         */
     public void printAverage(ArrayList<Double> listOfNumbers) {
-           UI.println("method printAverage() is not implemented yet");  // remove when you have implemented your method
-           /*# YOUR CODE HERE */
+        //UI.println("method printAverage() is not implemented yet");  // remove when you have implemented your method
+        /*# YOUR CODE HERE */
+        double total = 0;
+        //    double averageTemp = 0;
+        for (double temp : listOfNumbers) {
+            total = total + temp;
+            //UI.println(total);               
+        }
+        double averageTemp = total / listOfNumbers.size();
+        UI.println("Average temperature = " + averageTemp);
 
     }
 
@@ -78,14 +86,25 @@ public class TemperatureAnalyser{
         *   - Scale the x-axis so that all the bars fit in the window.
         */
     public void plotLevels(ArrayList<Double> listOfNumbers) {
-           UI.println("method plotLevels() is not implemented yet");  // remove when you have implemented your method
-           int base = 420;                    //base of the graph
-           int left = 50;                        //left of the graph
-           int step = 25;                        //distance between plotted points
+        //UI.println("method plotLevels() is not implemented yet");  // remove when you have implemented your method
+        double base = 420; //base of the graph
+        double left = 50; //left of the graph
+        double step = 40; //distance between plotted points
+        double gap = 0;
+        double thickness = 30;
 
-           /*# YOUR CODE HERE */
+        /*# YOUR CODE HERE */
+        for (double temp : listOfNumbers) {
+            UI.setColor(Color.black);
+            UI.fillRect(left + gap, base - (temp * 20), thickness, temp * 20);
+            UI.setColor(Color.red);
+            UI.drawString(String.valueOf(temp), left + gap, base - (temp * 20));
+            gap = gap + step;
+            
 
-           UI.println("Finished plotting");
+        }
+
+        UI.println("Finished plotting");
     }
 
     /** Find and return the maximum level in the list
@@ -94,11 +113,13 @@ public class TemperatureAnalyser{
         *        needs to be initialised to an appropriate value.
         *  COMPLETION
         */
-    public double maximumOfList(ArrayList<Double> listOfNumbers) {
-           UI.println("method maximumOfList() is not implemented yet");  // remove when you have implemented your method
-           /*# YOUR CODE HERE */
+    //Need a bubble sort algorithm?
 
-	return -10000;  // You need to replace this line - it is just here to make the template compile.
+    public double maximumOfList(ArrayList<Double> listOfNumbers) {
+        UI.println("method maximumOfList() is not implemented yet"); // remove when you have implemented your method
+        /*# YOUR CODE HERE */
+
+        return -10000; // You need to replace this line - it is just here to make the template compile.
     }
 
     /** Find and return the minimum level in the list
@@ -108,12 +129,10 @@ public class TemperatureAnalyser{
         *  COMPLETION
         */
     public double minimumOfList(ArrayList<Double> listOfNumbers) {
-           UI.println("method minimumOfList() is not implemented yet");  // remove when you have implemented your method
-           /*# YOUR CODE HERE */
+        UI.println("method minimumOfList() is not implemented yet"); // remove when you have implemented your method
+        /*# YOUR CODE HERE */
 
-	return -10000;  // You need to replace this line - it is just here to make the template compile.
+        return -10000; // You need to replace this line - it is just here to make the template compile.
     }
-
-
 
 }
