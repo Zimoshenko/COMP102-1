@@ -92,15 +92,26 @@ public class TemperatureAnalyser {
         double step = 40; //distance between plotted points
         double gap = 0;
         double thickness = 30;
+        double ratio = 20;
 
-        /*# YOUR CODE HERE */
+        /* draw x-axis */
+        UI.setColor(Color.pink);
+        UI.drawLine(left, base, 9999, base);
+
+        /* draw bars */
         for (double temp : listOfNumbers) {
-            UI.setColor(Color.black);
-            UI.fillRect(left + gap, base - (temp * 20), thickness, temp * 20);
-            UI.setColor(Color.red);
-            UI.drawString(String.valueOf(temp), left + gap, base - (temp * 20));
+            if (temp >= 0) {
+                UI.setColor(Color.black);
+                UI.fillRect(left + gap, base - (temp * ratio), thickness, temp * ratio);
+                UI.setColor(Color.red);
+                UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
+            } else {
+                UI.setColor(Color.black);
+                UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
+                UI.setColor(Color.red);
+                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio)+10);
+            }
             gap = gap + step;
-            
 
         }
 
@@ -134,5 +145,9 @@ public class TemperatureAnalyser {
 
         return -10000; // You need to replace this line - it is just here to make the template compile.
     }
+
+    /* public boolean name() {
+    
+    } */
 
 }
