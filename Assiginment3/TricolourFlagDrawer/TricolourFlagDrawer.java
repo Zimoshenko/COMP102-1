@@ -15,8 +15,8 @@ import javax.swing.JColorChooser;
 /** TricolourFlagDrawer: draws a series of tricolour flags */
 public class TricolourFlagDrawer {
 
-    public static final double width = 200;
-    public static final double height = 133;
+    public static final double width_1 = 150;
+    public static final double height_1 = 100;
 
     /** Constructor: set up user interface */
     public TricolourFlagDrawer() {
@@ -131,7 +131,32 @@ public class TricolourFlagDrawer {
     }
 
     public void doChallenge() {
+        this.drawFlagAndName(true, 0, 0, Color.black, Color.yellow, Color.red, "Belgium");// Belgium
+        this.drawFlagAndName(false, 0, 100, Color.black, Color.red, Color.yellow,"Germany"); // Germany
+        this.drawFlagAndName(true, 0, 200, Color.blue, Color.white, Color.red,"France"); // France
+        this.drawFlagAndName(true, 150, 0, Color.red, Color.yellow, Color.green.darker(),"Guinea"); // Guinea
+        this.drawFlagAndName(false, 150, 100, Color.red, Color.white, Color.blue,"Netherlands"); // The Netherlands
+        this.drawFlagAndName(false, 150, 200, Color.white, Color.blue, Color.red,"Russia"); // Russia 
+        this.drawFlagAndName(false, 300, 200, Color.red, Color.white, Color.red,"Austria");//Flag of Austria
+        this.drawFlagAndName(true, 300, 100, Color.red.darker(), Color.white, Color.red.darker(),"Peru");//Peru
+        this.drawFlagAndName(true, 300, 0, Color.black, Color.white, Color.red,"Roman");// Roman 
         this.drawGrid();
+
+    }
+
+    public void drawFlagAndName(boolean verticalMode, double left, double top, Color stripe1, Color stripe2,
+            Color stripe3, String flagName) {
+        this.drawThreeColourFlagCompletion(verticalMode, left, top, stripe1, stripe2, stripe3);
+        double x = left + (width_1 / 10) * 3.3;
+        double y = top + (height_1 / 10) * 5;
+        if (stripe2 == Color.red || stripe2 == Color.red.darker()) {
+            UI.setColor(Color.white);
+
+        } else {
+            UI.setColor(Color.red.brighter());
+        }
+
+        UI.drawString(flagName, x, y);
 
     }
 
@@ -142,12 +167,11 @@ public class TricolourFlagDrawer {
          height=300, width=450\
          each block width = 150, height = 100
         */
-        UI.setColor(Color.black);
+        UI.setColor(Color.black.brighter());
         double left = 0;
         double top = 0;
-        //UI.drawRect(left, top, 450, 300);//the outside border
-        double width = 450;
         double height = 300;
+        double width = height * 1.5;
         double _width = (width / 3.0);
         double _height = (height / 3.0);
         while (_width <= width) {
@@ -162,8 +186,5 @@ public class TricolourFlagDrawer {
 
     }
 
-    public void printName(int row, int column, String flagName) {
-
-    }
 
 }
