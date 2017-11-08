@@ -132,14 +132,14 @@ public class TricolourFlagDrawer {
 
     public void doChallenge() {
         this.drawFlagAndName(true, 0, 0, Color.black, Color.yellow, Color.red, "Belgium");// Belgium
-        this.drawFlagAndName(false, 0, 100 + 10, Color.black, Color.red, Color.yellow,"Germany"); // Germany
-        this.drawFlagAndName(true, 0, 200 + 10 + 10, Color.blue, Color.white, Color.red,"France"); // France
-        this.drawFlagAndName(true, 150, 0, Color.red, Color.yellow, Color.green.darker(),"Guinea"); // Guinea
-        this.drawFlagAndName(false, 150, 100 + 10, Color.red, Color.white, Color.blue,"Netherlands"); // The Netherlands
-        this.drawFlagAndName(false, 150, 200 + 10 + 10, Color.white, Color.blue, Color.red,"Russia"); // Russia 
-        this.drawFlagAndName(false, 300, 200 + 10 + 10, Color.red, Color.white, Color.red,"Austria");//Flag of Austria
-        this.drawFlagAndName(true, 300, 100 + 10, Color.red.darker(), Color.white, Color.red.darker(),"Peru");//Peru
-        this.drawFlagAndName(true, 300, 0, Color.black, Color.white, Color.red,"Roman");// Roman 
+        this.drawFlagAndName(false, 0, 100 + 10, Color.black, Color.red, Color.yellow, "Germany"); // Germany
+        this.drawFlagAndName(true, 0, 200 + 10 + 10, Color.blue, Color.white, Color.red, "France"); // France
+        this.drawFlagAndName(true, 150, 0, Color.red, Color.yellow, Color.green.darker(), "Guinea"); // Guinea
+        this.drawFlagAndName(false, 150, 100 + 10, Color.red, Color.white, Color.blue, "Netherlands"); // The Netherlands
+        this.drawFlagAndName(false, 150, 200 + 10 + 10, Color.white, Color.blue, Color.red, "Russia"); // Russia 
+        this.drawFlagAndName(false, 300, 200 + 10 + 10, Color.red, Color.white, Color.red, "Austria");//Flag of Austria
+        this.drawFlagAndName(true, 300, 100 + 10, Color.red.darker(), Color.white, Color.red.darker(), "Peru");//Peru
+        this.drawFlagAndName(true, 300, 0, Color.black, Color.white, Color.red, "Roman");// Roman 
         this.drawGrid();
 
     }
@@ -150,9 +150,9 @@ public class TricolourFlagDrawer {
         double x = left + (width_1 / 10) * 3.3;
         double y = top + (height_1 / 10) * 11;
         UI.setColor(Color.red.brighter());
-/*         if (stripe2 == Color.red || stripe2 == Color.red.darker()) {
+        /*         if (stripe2 == Color.red || stripe2 == Color.red.darker()) {
             UI.setColor(Color.white);
-
+        
         } else {
             UI.setColor(Color.red.brighter());
         } */
@@ -186,6 +186,5 @@ public class TricolourFlagDrawer {
         }
 
     }
-
 
 }
