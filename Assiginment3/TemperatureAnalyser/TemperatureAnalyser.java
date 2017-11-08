@@ -73,14 +73,14 @@ public class TemperatureAnalyser {
         * Plot a bar graph of the sequence of levels,
         * using narrow rectangles whose heights are equal to the level.
         * [Core]
-        *   - Plot the bars.
+        *   √ Plot the bars.
         * [Completion]
-        *   - Draws a horizontal line for the x-axis (or baseline) without any labels.
+        *   √ Draws a horizontal line for the x-axis (or baseline) without any labels.
         *   - Any level greater than 400 should be plotted as if it were just 400, putting an
         *            asterisk ("*") above it to show that it has been cut off.
         * [Challenge:] 
         *   - The graph should also have labels on the axes, roughly every 50 pixels.
-        *   - The graph should also draw negative temperature levels correctly.
+        *   √ The graph should also draw negative temperature levels correctly.
         *   - Scale the y-axis and the bars so that the largest numbers and the smallest just fit on the graph.
         *        The numbers on the y axis should reflect the scaling.
         *   - Scale the x-axis so that all the bars fit in the window.
@@ -92,24 +92,32 @@ public class TemperatureAnalyser {
         double step = 40; //distance between plotted points
         double gap = 0;
         double thickness = 30;
-        double ratio = 20;
+        double ratio = 1;
 
         /* draw x-axis */
         UI.setColor(Color.pink);
         UI.drawLine(left, base, 9999, base);
 
-        /* draw bars */
+        /* draw bars+ */
         for (double temp : listOfNumbers) {
             if (temp >= 0) {
-                UI.setColor(Color.black);
-                UI.fillRect(left + gap, base - (temp * ratio), thickness, temp * ratio);
-                UI.setColor(Color.red);
-                UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
+                if (temp > 400) {
+                    UI.setColor(Color.black);
+                    UI.fillRect(left + gap, base - (temp * ratio), thickness, temp * ratio);
+                    UI.setColor(Color.red);
+                    UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
+
+                } else {
+                    UI.setColor(Color.black);
+                    UI.fillRect(left + gap, base - (temp * ratio), thickness, temp * ratio);
+                    UI.setColor(Color.red);
+                    UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
+                }
             } else {
                 UI.setColor(Color.black);
                 UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
                 UI.setColor(Color.red);
-                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio)+10);
+                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio) + 10);
             }
             gap = gap + step;
 
@@ -127,10 +135,21 @@ public class TemperatureAnalyser {
     //Need a bubble sort algorithm?
 
     public double maximumOfList(ArrayList<Double> listOfNumbers) {
+        // double[] _listOfNumbers = listOfNumbers;
         UI.println("method maximumOfList() is not implemented yet"); // remove when you have implemented your method
         /*# YOUR CODE HERE */
+        // Arrays.sort(_listOfNumbers);
+        double lastNumber = 0;
+        double biggestNumber = 0;
+        for (double currentNumber : listOfNumbers) {
+            if (currentNumber >= lastNumber) {
+                biggestNumber = currentNumber;
+                lastNumber = currentNumber;
+            }
 
-        return -10000; // You need to replace this line - it is just here to make the template compile.
+        }
+
+        return biggestNumber; // You need to replace this line - it is just here to make the template compile.
     }
 
     /** Find and return the minimum level in the list
@@ -140,10 +159,18 @@ public class TemperatureAnalyser {
         *  COMPLETION
         */
     public double minimumOfList(ArrayList<Double> listOfNumbers) {
-        UI.println("method minimumOfList() is not implemented yet"); // remove when you have implemented your method
+        //UI.println("method minimumOfList() is not implemented yet"); // remove when you have implemented your method
         /*# YOUR CODE HERE */
+        double lastNumber = 0;
+        double smallestNumber = 0;
+        for (double currentNumber : listOfNumbers) {
+            if (currentNumber <= lastNumber) {
+                smallestNumber = currentNumber;
+            }
+            lastNumber = currentNumber;
+        }
 
-        return -10000; // You need to replace this line - it is just here to make the template compile.
+        return smallestNumber; // You need to replace this line - it is just here to make the template compile.
     }
 
     /* public boolean name() {
