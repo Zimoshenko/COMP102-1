@@ -90,17 +90,25 @@ public class TemperatureAnalyser {
         double base = 420; //base of the graph
         double left = 50; //left of the graph
         double step = 40; //distance between plotted points
-        double gap = 0;
-        double thickness = 30;
-        double ratio = 1;
+        this.drawAxes(left, base);
+        this.drawBars(listOfNumbers, base, left, step);
+    }
 
+    public void drawAxes(double left, double base) {
         /* draw x-axis */
         UI.setColor(Color.pink);
         UI.drawLine(left, base, 9999, base);
         /* draw y-axis */
         UI.setColor(Color.pink);
         UI.drawLine(left, base, left, 0);
-        /* draw bars+ */
+
+    }
+
+    /* drawBars:draw bars+ */
+    public void drawBars(ArrayList<Double> listOfNumbers, double base, double left, double step) {
+        double gap = 0;
+        double thickness = 30;
+        double ratio = 1;
         for (double temp : listOfNumbers) {
             if (temp >= 0) {
                 if (temp > 400) {
@@ -147,7 +155,6 @@ public class TemperatureAnalyser {
         *  COMPLETION
         */
     //Need a bubble sort algorithm?//no actually
-
     public double maximumOfList(ArrayList<Double> listOfNumbers) {
         // double[] _listOfNumbers = listOfNumbers;
         //UI.println("method maximumOfList() is not implemented yet"); // remove when you have implemented your method
