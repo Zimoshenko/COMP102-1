@@ -76,7 +76,7 @@ public class TemperatureAnalyser {
         *   √ Plot the bars.
         * [Completion]
         *   √ Draws a horizontal line for the x-axis (or baseline) without any labels.
-        *   - Any level greater than 400 should be plotted as if it were just 400, putting an
+        *   √ Any level greater than 400 should be plotted as if it were just 400, putting an
         *            asterisk ("*") above it to show that it has been cut off.
         * [Challenge:] 
         *   - The graph should also have labels on the axes, roughly every 50 pixels.
@@ -97,15 +97,19 @@ public class TemperatureAnalyser {
         /* draw x-axis */
         UI.setColor(Color.pink);
         UI.drawLine(left, base, 9999, base);
-
+        /* draw y-axis */
+        UI.setColor(Color.pink);
+        UI.drawLine(left, base, left, 0);
         /* draw bars+ */
         for (double temp : listOfNumbers) {
             if (temp >= 0) {
                 if (temp > 400) {
+                    double _temp = temp;
+                    temp = 400;
                     UI.setColor(Color.black);
                     UI.fillRect(left + gap, base - (temp * ratio), thickness, temp * ratio);
                     UI.setColor(Color.red);
-                    UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
+                    UI.drawString("*" + String.valueOf(_temp), left + gap, base - (temp * ratio));
 
                 } else {
                     UI.setColor(Color.black);
@@ -114,10 +118,20 @@ public class TemperatureAnalyser {
                     UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio));
                 }
             } else {
-                UI.setColor(Color.black);
-                UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
-                UI.setColor(Color.red);
-                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio) + 10);
+                if (temp < -400) {
+                    double _temp = temp;
+                    temp = -400;
+                    UI.setColor(Color.green);
+                    UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
+                    UI.setColor(Color.red);
+                    UI.drawString(String.valueOf(_temp), left + gap, base + (Math.abs(temp)) + 10);
+
+                } else {
+                    UI.setColor(Color.black);
+                    UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
+                    UI.setColor(Color.red);
+                    UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio) + 10);
+                }
             }
             gap = gap + step;
 
@@ -132,11 +146,11 @@ public class TemperatureAnalyser {
         *        needs to be initialised to an appropriate value.
         *  COMPLETION
         */
-    //Need a bubble sort algorithm?
+    //Need a bubble sort algorithm?//no actually
 
     public double maximumOfList(ArrayList<Double> listOfNumbers) {
         // double[] _listOfNumbers = listOfNumbers;
-        UI.println("method maximumOfList() is not implemented yet"); // remove when you have implemented your method
+        //UI.println("method maximumOfList() is not implemented yet"); // remove when you have implemented your method
         /*# YOUR CODE HERE */
         // Arrays.sort(_listOfNumbers);
         double lastNumber = 0;
