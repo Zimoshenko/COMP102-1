@@ -19,12 +19,26 @@ import java.util.*;
  *    The maximum and the minimum temperature levels during the day.
  */
 public class TemperatureAnalyser {
+    boolean scaleVersion = false;
 
     /** Constructor: set up user interface */
     public TemperatureAnalyser() {
         UI.initialise();
         UI.addButton("Analyse", this::doAnalyse);
+        UI.addButton("Scale On/Off", this::doChangeVersion);
         UI.addButton("Quit", UI::quit);
+    }
+
+    public void doChangeVersion() {
+        if (scaleVersion) {
+            UI.println("Auto scale OFF");
+            scaleVersion = false;
+
+        } else {
+            UI.println("Auto scale ON");
+            scaleVersion = true;
+        }
+
     }
 
     /* doAnalyse reads a sequence of temperature levels from the user and prints out
@@ -91,7 +105,12 @@ public class TemperatureAnalyser {
         double left = 50; //left of the graph
         double step = 40; //distance between plotted points
         this.drawAxes(left, base);
-        this.drawBars(listOfNumbers, base, left, step);
+        if (scaleVersion) {
+            this.drawBarsChallenge(listOfNumbers, base, left, step);
+
+        } else {
+            this.drawBars(listOfNumbers, base, left, step);
+        }
     }
 
     public void drawAxes(double left, double base) {
@@ -105,7 +124,38 @@ public class TemperatureAnalyser {
     }
 
     /* drawBars:draw bars+ */
-    public void drawBars(ArrayList<Double> listOfNumbers, double base, double left, double step) {
+    public void drawBarsChallenge(ArrayList<Double> listOfNumbers, double base, double left, double _step) {//Challenge:this advanced method can auto scale axes!
+        //double canvasHeight = UI.getCanvasHeight();
+        double step = 20;
+        double gap = 0;
+        double yOffset = 0;
+        double canvasWidth = UI.getCanvasWidth() - left;
+        double thickness = ((canvasWidth / listOfNumbers.size()) - step);
+        double xOffset = 0;
+        double ratio = 400 / maximumOfList(listOfNumbers);//WIP
+        /* When ratio = 1, highest level is 400.
+        Thus we have <ratio = 400/max> to deal with y-axis */
+
+        for (double temp : listOfNumbers) {
+            if (temp >= 0) {
+                UI.setColor(Color.black);
+                UI.fillRect(left + xOffset, base - (temp * ratio), thickness, temp * ratio);
+                /*  UI.setColor(Color.red);
+                UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio)); */
+            } else {//WIP
+                UI.setColor(Color.black);
+                UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
+                /* UI.setColor(Color.red);
+                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio) + 10); */
+            }
+            xOffset = xOffset + step + thickness;
+        }
+
+        UI.println("Finished plotting");
+
+    }
+
+    public void drawBars(ArrayList<Double> listOfNumbers, double base, double left, double step) {//Completion
         double gap = 0;
         double thickness = 30;
         double ratio = 1;
