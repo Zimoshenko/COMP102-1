@@ -95,44 +95,51 @@ public class TemperatureAnalyser {
         * [Challenge:] 
         *   - The graph should also have labels on the axes, roughly every 50 pixels.
         *   √ The graph should also draw negative temperature levels correctly.
-        *   - Scale the y-axis and the bars so that the largest numbers and the smallest just fit on the graph.
+        *   √ Scale the y-axis and the bars so that the largest numbers and the smallest just fit on the graph.
         *        The numbers on the y axis should reflect the scaling.
-        *   - Scale the x-axis so that all the bars fit in the window.
+        *   √ Scale the x-axis so that all the bars fit in the window.
         */
     public void plotLevels(ArrayList<Double> listOfNumbers) {
         //UI.println("method plotLevels() is not implemented yet");  // remove when you have implemented your method
         double base = 420; //base of the graph
         double left = 50; //left of the graph
         double step = 40; //distance between plotted points
-        this.drawAxes(left, base);
+
+        double max = this.maximumOfList(listOfNumbers);
+        double min = this.minimumOfList(listOfNumbers);
+
+        //this.drawAxes(left, base);
         if (scaleVersion) {
             this.drawBarsChallenge(listOfNumbers, base, left, step);
 
         } else {
             this.drawBars(listOfNumbers, base, left, step);
         }
-    }
 
-    public void drawAxes(double left, double base) {
         /* draw x-axis */
         UI.setColor(Color.pink);
-        UI.drawLine(left, base, 9999, base);
+        UI.drawLine(left, base, base + UI.getCanvasWidth(), base);
         /* draw y-axis */
         UI.setColor(Color.pink);
-        UI.drawLine(left, base, left, 0);
-
+        UI.drawLine(left, 20, left, base * 2);
     }
+
+    /*    public void drawAxes(double left, double base) {
+    
+    
+    } */
 
     /* drawBars:draw bars+ */
     public void drawBarsChallenge(ArrayList<Double> listOfNumbers, double base, double left, double _step) {//Challenge:this advanced method can auto scale axes!
         //double canvasHeight = UI.getCanvasHeight();
+        double max = maximumOfList(listOfNumbers);
         double step = 20;
         double gap = 0;
-        double yOffset = 0;
+        // double yOffset = 0;
         double canvasWidth = UI.getCanvasWidth() - left;
         double thickness = ((canvasWidth / listOfNumbers.size()) - step);
         double xOffset = 0;
-        double ratio = 400 / maximumOfList(listOfNumbers);//WIP
+        double ratio = 400 / max;//WIP
         /* When ratio = 1, highest level is 400.
         Thus we have <ratio = 400/max> to deal with y-axis */
 
@@ -140,19 +147,50 @@ public class TemperatureAnalyser {
             if (temp >= 0) {
                 UI.setColor(Color.black);
                 UI.fillRect(left + xOffset, base - (temp * ratio), thickness, temp * ratio);
-                /*  UI.setColor(Color.red);
-                UI.drawString(String.valueOf(temp), left + gap, base - (temp * ratio)); */
-            } else {//WIP
+                UI.setColor(Color.orange);
+                UI.drawString(String.valueOf(temp), left + xOffset + (thickness * 0.33), base - (temp * ratio));
+            } else {
                 UI.setColor(Color.black);
-                UI.fillRect(left + gap, base, thickness, (Math.abs(temp) * ratio));
-                /* UI.setColor(Color.red);
-                UI.drawString(String.valueOf(temp), left + gap, base + (Math.abs(temp) * ratio) + 10); */
+                UI.fillRect(left + xOffset, base, thickness, (Math.abs(temp) * ratio));
+                UI.setColor(Color.orange);
+                UI.drawString(String.valueOf(temp), left + xOffset + (thickness * 0.33),
+                        base + (Math.abs(temp) * ratio) + 10);
             }
             xOffset = xOffset + step + thickness;
         }
 
-        UI.println("Finished plotting");
+        /* draw labels */
+        /* 1 label for per 50 pixels , so 400 pixels has 8 labels needs to draw(?) 
+        each character take up about 6.66 px
+            base=420
+                    --> highest label's y = 20
+        position:
+            * x=left
+            * y=?
+        
+        */
+        int i = 0;
+        double label = 0;
+        while (i < 9) {
+            //int length = (String.valueOf(label).length());
+            UI.setColor(Color.red);
+            UI.drawString(String.valueOf(label), (3.3 + left - (String.valueOf(label).length()) * 6.66666),
+                    base - (i * 50));//adjusting label's position
+            i++;
+            label = label + (max / 8);
+        }
+        i = 0;
+        label = 0;
+        while (i < 9) {
+            //int length = (String.valueOf(label).length());
+            UI.setColor(Color.red);
+            UI.drawString(String.valueOf(label), (4 + left - (String.valueOf(label).length()) * 6.66666),
+                    base + (i * 50));//adjusting label's position
+            i++;
+            label = label - (max / 8);
+        }
 
+        UI.println("Finished plotting");
     }
 
     public void drawBars(ArrayList<Double> listOfNumbers, double base, double left, double step) {//Completion
@@ -232,12 +270,13 @@ public class TemperatureAnalyser {
     public double minimumOfList(ArrayList<Double> listOfNumbers) {
         //UI.println("method minimumOfList() is not implemented yet"); // remove when you have implemented your method
         /*# YOUR CODE HERE */
-        double lastNumber = 0;
+        double lastNumber = this.maximumOfList(listOfNumbers);
         double smallestNumber = 0;
         for (double currentNumber : listOfNumbers) {
             if (currentNumber <= lastNumber) {
                 smallestNumber = currentNumber;
             }
+
             lastNumber = currentNumber;
         }
 
