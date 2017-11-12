@@ -1,0 +1,11 @@
+these are words you should not be typing out.  They
+are all the words that appear in the file.
+the program is supposed to print nothing but the
+first word of each line, not all the 
+words in the file. After reading the first word
+on a line, your program should throw away the rest of the line.
+each exercise is slightly different; this one reads by
+line as well as by word. You should read the first word
+of a line with the next() method and the rest of 
+this line with the nextLine() method. You don't have to write to a
+file in any of the exercises.

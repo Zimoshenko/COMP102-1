@@ -1,0 +1,9 @@
+bananas     100 0.30
+20kgflour   3  16.34
+milk	    7  2.32
+butter      3  4.20
+yeast	    1  7.89
+salt	    1  1.43
+sugar	    2  3.91
+raisens	    5  7.23
+bran	    3  2.28

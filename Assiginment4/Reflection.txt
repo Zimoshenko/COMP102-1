@@ -1,0 +1,19 @@
+/* Reflection.txt for COMP102 - 2017T1
+ * Name:
+ * Username:
+ * ID:
+ */
+
+Questions for Reflection: 
+=========================
+
+1. ClassTimes and ImageRenderer both got their input from a file.
+Explain some of the differences between reading data from a file and reading
+data directly from the user.
+
+2. The series of methods in ClassTimes were progressively more tricky. Identify
+what it was about the later ones that made them more difficult.
+
+3. The lines in classdata.txt were sorted by the coursecode. What queries would
+be easier or have nicer output if they had been sorted by one of the other fields?
+
