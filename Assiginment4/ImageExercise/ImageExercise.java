@@ -23,16 +23,16 @@ import java.io.*;
 // You can make random integers between 0 and 255 using
 // int red = (int)(Math.random()*256);
 
-public class ImageExercise{
+public class ImageExercise {
 
     /** Constructor: set up user interface */
-    public ImageExercise(){
+    public ImageExercise() {
         UI.addButton("Clear", UI::clearGraphics);
         UI.addButton("Grid", this::doDrawGrid);
         UI.addButton("Random Image", this::doDrawRandom);
         UI.addButton("Gradient Image", this::doDrawGradient);
         UI.addButton("Quit", UI::quit);
-    }        
+    }
 
     /** Draw a square grid board with white squares.
      */
@@ -41,10 +41,10 @@ public class ImageExercise{
         this.drawGridBoard(num);
     }
 
-    public void drawGridBoard(int num){
-        double boardLeft = 40;   // Top left corner of the board
+    public void drawGridBoard(int num) {
+        double boardLeft = 40; // Top left corner of the board
         double boardTop = 40;
-        double boardSize = 360;  // The size of the board on the window
+        double boardSize = 360; // The size of the board on the window
 
         /*# YOUR CODE HERE */
 
@@ -61,12 +61,36 @@ public class ImageExercise{
         this.drawRandomImage(rows, cols);
     }
 
-    public void drawRandomImage(int rows, int cols){
-        double left=20;
-        double top=20;
+    public Color randomColor() {
+        int r, g, b;
+        r = (int) (Math.random() * 256);
+        g = (int) (Math.random() * 256);
+        b = (int) (Math.random() * 256);
+        Color color = new Color(r, g, b);
+
+        return color;
+    }
+
+    public void drawRandomImage(int rows, int cols) {
+        double left = 20;
+        double top = 20;
         double size = 10;
+        int row = 0;
+        int col = 0;
+        int x = 0;
+        int y = 0;
 
         /*# YOUR CODE HERE */
+        while (row != rows) {
+            while (col != cols) {
+                UI.setColor(this.randomColor());
+                UI.fillRect(x + col * size, y + row * size, size, size);
+                col++;
+            }
+            col = 0;
+            row++;
+
+        }
 
     }
 
@@ -79,15 +103,14 @@ public class ImageExercise{
         this.drawGradient(rows, cols);
     }
 
-    public void drawGradient(int rows, int cols){
+    public void drawGradient(int rows, int cols) {
         UI.clearGraphics();
-        double left=20;
-        double top=20;
+        double left = 20;
+        double top = 20;
         double size = 2;
 
         /*# YOUR CODE HERE */
 
     }
-
 
 }
