@@ -71,9 +71,28 @@ public class ClassTimes {
         UI.println("\nClasses for course " + targetCourse);
         UI.println("=========================");
         /*# YOUR CODE HERE */
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                //UI.println(line);
+                Scanner lineScanner = new Scanner(line);
+                //courseName = lineScanner.next() ;
+                if (lineScanner.next().equals(targetCourse)) {
+                    UI.println(line);
+                    
+                }
+            }
+        }
 
+        catch (IOException e) {
+            UI.printf("File Failure %s \n", e);
+        }
         UI.println("=========================");
     }
+
+
+    
 
     /** Core 3
         * Prints out the name of the target room, and underlines it.
