@@ -80,7 +80,7 @@ public class ClassTimes {
                 //courseName = lineScanner.next() ;
                 if (lineScanner.next().equals(targetCourse)) {
                     UI.println(line);
-                    
+
                 }
             }
         }
@@ -90,9 +90,6 @@ public class ClassTimes {
         }
         UI.println("=========================");
     }
-
-
-    
 
     /** Core 3
         * Prints out the name of the target room, and underlines it.
@@ -110,8 +107,30 @@ public class ClassTimes {
     public void printRoom(String targetRoom) {
         UI.println("Classes in " + targetRoom);
         UI.println("=======================");
+
         /*# YOUR CODE HERE */
 
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                for(int i =0;i<5;i++){
+                    lineScanner.next();
+
+                }
+
+                
+                if (lineScanner.next().equals(targetRoom)) {
+                    UI.println(line);
+                    
+                }
+            }
+        }
+
+        catch (IOException e) {
+            UI.printf("File Failure %s \n", e);
+        }
         UI.println("=========================");
     }
 
