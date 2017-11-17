@@ -9,6 +9,9 @@
 */
 import ecs100.*;
 import java.util.*;
+
+import javax.swing.text.html.HTML.Tag;
+
 import java.io.*;
 
 public class ClassTimes {
@@ -62,7 +65,7 @@ public class ClassTimes {
         */
 
     public void doPrintCourse() {
-        String course = UI.askString("Enter course code (eg ACCY111):").toUpperCase();
+        String course = UI.askString("Enter course code (eg ACCY111):\n").toUpperCase();
         UI.clearText();
         this.printCourse(course);
     }
@@ -105,25 +108,19 @@ public class ClassTimes {
     }
 
     public void printRoom(String targetRoom) {
-        UI.println("Classes in " + targetRoom);
+        UI.println("\nClasses in " + targetRoom);
         UI.println("=======================");
-
         /*# YOUR CODE HERE */
-
         try {
             Scanner scan = new Scanner(new File("classdata.txt"));
             while (scan.hasNext()) {
                 String line = scan.nextLine();
                 Scanner lineScanner = new Scanner(line);
-                for(int i =0;i<5;i++){
+                for (int i = 0; i < 5; i++) {//this is the first time I use FOR loop, i<5 means loops 5 time 
                     lineScanner.next();
-
                 }
-
-                
                 if (lineScanner.next().equals(targetRoom)) {
                     UI.println(line);
-                    
                 }
             }
         }
@@ -137,7 +134,7 @@ public class ClassTimes {
     /** Completion 1
         * Prints a title containing its arguments, and then
         * Reads the class timetable file, printing out (to the UI window)
-        * the course code, class type, day, start and end time
+        * the course #code, class #type, #day, #start and #end time
         * for each class that is in targetRoom1 or targetRoom2 and is on targetDay
         * It will be best to read the six tokens on each line individually.
         */
@@ -153,6 +150,35 @@ public class ClassTimes {
         UI.printf("Classes in %s or %s on %s%n", targetRoom1, targetRoom2, targetDay);
         UI.println("==========================================");
         /*# YOUR CODE HERE */
+        String code, type, day, startTime, endTime,room;
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                code = lineScanner.next();
+                type = lineScanner.next();
+                day = lineScanner.next();
+                startTime = lineScanner.next();
+                endTime = lineScanner.next();
+                room = lineScanner.next();
+                //UI.println(code + " " + type + " " + day + " " + startTime + " " + endTime);
+                if ((room.equals(targetRoom1) || room.equals(targetRoom2)) && (day.equals(targetDay))) {
+                    UI.println(code+" "+type + " "+day + " "+startTime + " "+endTime);
+                    
+                }
+
+
+
+
+
+
+            }
+        }
+
+        catch (IOException e) {
+            UI.printf("File Failure %s \n", e);
+        }
 
         UI.println("=========================");
     }
