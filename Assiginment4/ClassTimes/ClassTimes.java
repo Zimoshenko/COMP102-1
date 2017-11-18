@@ -213,7 +213,6 @@ public class ClassTimes {
         */
     public void doBookingsFileForRoom() {
         String room = UI.askString("Enter room code (eg AM102):").toUpperCase();
-        ;
         UI.clearText();
         this.bookingsFileForRoom(room);
     }
@@ -221,6 +220,8 @@ public class ClassTimes {
     public void bookingsFileForRoom(String targetRoom) {
         UI.println("Generating room booking file for " + targetRoom);
         /*# YOUR CODE HERE */
+        String fileName;
+        filename = targetRoom + "_Bookings.txt";
 
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
         UI.println("=========================");
