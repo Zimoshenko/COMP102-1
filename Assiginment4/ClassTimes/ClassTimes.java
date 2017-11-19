@@ -150,7 +150,7 @@ public class ClassTimes {
         UI.printf("Classes in %s or %s on %s%n", targetRoom1, targetRoom2, targetDay);
         UI.println("==========================================");
         /*# YOUR CODE HERE */
-        String code, type, day, startTime, endTime,room;
+        String code, type, day, startTime, endTime, room;
         try {
             Scanner scan = new Scanner(new File("classdata.txt"));
             while (scan.hasNext()) {
@@ -164,15 +164,8 @@ public class ClassTimes {
                 room = lineScanner.next();
                 //UI.println(code + " " + type + " " + day + " " + startTime + " " + endTime);
                 if ((room.equals(targetRoom1) || room.equals(targetRoom2)) && (day.equals(targetDay))) {
-                    UI.println(code+" "+type + " "+day + " "+startTime + " "+endTime);
-                    
+                    UI.println(code + " " + type + " " + day + " " + startTime + " " + endTime);
                 }
-
-
-
-
-
-
             }
         }
 
@@ -221,8 +214,41 @@ public class ClassTimes {
         UI.println("Generating room booking file for " + targetRoom);
         /*# YOUR CODE HERE */
         String fileName;
-        filename = targetRoom + "_Bookings.txt";
+        fileName = targetRoom + "_Bookings.txt";
+        /* read file and check what should be write */
+        String code, type, day, startTime, endTime, room;
+        UI.println("=========================");
+        UI.println("TESTING");
+        UI.println("Bookings for room "+targetRoom);
+        UI.println("----------------------------------");
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                code = lineScanner.next();
+                type = lineScanner.next();
+                day = lineScanner.next();
+                startTime = lineScanner.next();
+                endTime = lineScanner.next();
+                room = lineScanner.next();
+                if ((room.equals(targetRoom))) {
+                    UI.println("Course: "+code);
+                    UI.println("Time: "+startTime+"-"+endTime);
+                    UI.println("Session: "+ type);
+                    UI.println();
 
+                }
+            }
+        }
+
+        catch (IOException e) {
+            UI.printf("File Failure %s \n", e);
+        }
+
+
+
+        UI.println("=========================");
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
         UI.println("=========================");
     }
