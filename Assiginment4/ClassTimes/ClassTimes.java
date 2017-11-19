@@ -218,33 +218,47 @@ public class ClassTimes {
         /* read file and check what should be write */
         String code, type, day, startTime, endTime, room;
         UI.println("=========================");
-        UI.println("TESTING");
-        UI.println("Bookings for room "+targetRoom);
-        UI.println("----------------------------------");
+        // UI.println("TESTING");
         try {
-            Scanner scan = new Scanner(new File("classdata.txt"));
-            while (scan.hasNext()) {
-                String line = scan.nextLine();
-                Scanner lineScanner = new Scanner(line);
-                code = lineScanner.next();
-                type = lineScanner.next();
-                day = lineScanner.next();
-                startTime = lineScanner.next();
-                endTime = lineScanner.next();
-                room = lineScanner.next();
-                if ((room.equals(targetRoom))) {
-                    UI.println("Course: "+code);
-                    UI.println("Time: "+startTime+"-"+endTime);
-                    UI.println("Session: "+ type);
-                    UI.println();
+            PrintStream output = new PrintStream(new File(fileName));
+            output.println("Bookings for room " + targetRoom);
+            output.println("----------------------------------");
 
+            try {
+                Scanner scan = new Scanner(new File("classdata.txt"));
+                while (scan.hasNext()) {
+                    String line = scan.nextLine();
+                    Scanner lineScanner = new Scanner(line);
+                    code = lineScanner.next();
+                    type = lineScanner.next();
+                    day = lineScanner.next();
+                    startTime = lineScanner.next();
+                    endTime = lineScanner.next();
+                    room = lineScanner.next();
+                    if ((room.equals(targetRoom))) {
+                        output.println("Course: " + code);
+                        output.println("Time: " + startTime + "-" + endTime);
+                        output.println("Session: " + type);
+                        output.println();
+
+                    }
                 }
             }
+
+            catch (IOException e) {
+                UI.printf("File Failure %s \n", e);
+            }
+            output.close();
+        } catch (Exception e) {
+            //TODO: handle exception
+            UI.println("File Error:" + e);
         }
 
-        catch (IOException e) {
-            UI.printf("File Failure %s \n", e);
-        }
+
+
+
+
+
 
 
 
