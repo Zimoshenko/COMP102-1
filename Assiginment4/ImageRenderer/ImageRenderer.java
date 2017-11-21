@@ -37,11 +37,12 @@ public class ImageRenderer {
         * Asks for the name of the file, then calls renderImageHelper.
         */
     public void doRenderImageCore() {
-        //String fileName = UI.askString("Input name of the file:");
+        String fileName = UI.askString("Input name of the file:");
         try {
-            Scanner scan = new Scanner(new File("1-image-rose.ppm"));
+            Scanner scan = new Scanner(new File(fileName));
             this.renderImageHelper(scan);
         } catch (Exception e) {
+            UI.println("File error:"+e);
             //TODO: handle exception
         }
 
@@ -62,19 +63,19 @@ public class ImageRenderer {
         */
     public Color colorHelper(int r,int g,int b) {
         Color color = new Color(r, g, b);
-        return color;
-        
+        return color;        
     }
     
     
         public void renderImageHelper(Scanner sc) {
         /*# YOUR CODE HERE */
-        //    if (!sc.next().equals("P3")) {
-        //    UI.println("File is not a ppm image");
-        //    }
-        //    else{
-        //    }
-        sc.next();////First string in the file should be "P3", but seemed there's no need to check it
+            if (sc.next().equals("P3")) {//First string in the file should be "P3"
+            }
+            else{
+            UI.println("File is not a ppm image");
+            return;
+            }
+        //sc.next();
         int cols = sc.nextInt();
         int rows = sc.nextInt();
         int r,g,b;
@@ -82,8 +83,8 @@ public class ImageRenderer {
 
         int row = 0;
         int col = 0;
-        int x = 0;
-        int y = 0;
+        int x = 20;
+        int y = 20;
         int i =0;
         /* Render pixels LINE by LINE  */
         while (row != rows) {
@@ -114,6 +115,14 @@ public class ImageRenderer {
         */
     public void doRenderAnimatedImage() {
         /*# YOUR CODE HERE */
+        String fileName = UI.askString("Input name of the file:");
+        try {
+            Scanner scan = new Scanner(new File(fileName));
+            this.renderImageHelper(scan);
+        } catch (Exception e) {
+            UI.println("File error:" + e);
+            //TODO: handle exception
+        }
 
     }
 
