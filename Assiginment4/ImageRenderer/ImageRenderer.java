@@ -74,18 +74,18 @@ public class ImageRenderer {
         //    }
         //    else{
         //    }
-        sc.next();
+        sc.next();////First string in the file should be "P3", but seemed there's no need to check it
         int cols = sc.nextInt();
         int rows = sc.nextInt();
         int r,g,b;
-        sc.nextInt();
+        sc.nextInt();//that should be 255
 
         int row = 0;
         int col = 0;
         int x = 0;
         int y = 0;
         int i =0;
-
+        /* Render pixels LINE by LINE  */
         while (row != rows) {
             while (col != cols) {
                     r = sc.nextInt();
@@ -93,10 +93,9 @@ public class ImageRenderer {
                     b = sc.nextInt();
                     UI.setColor(colorHelper(r,g,b));
                     UI.fillRect(x + col * PIXEL_SIZE, y + row * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
-
                     col++;
                 }
-                col = 0;
+                col = 0;//reset col counter to 0 to start a new line
                 row++;
             }
 
