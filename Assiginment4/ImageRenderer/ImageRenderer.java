@@ -127,7 +127,7 @@ public static final int PIXEL_SIZE = 2;
         */
         sc.useDelimiter("P3");
         while (sc.hasNext()) {
-            String image = "P3\n"+sc.next();
+            String image = "P3\n"+sc.next();//the easiest way to reuse code(?)
             this.renderImageHelper(string2Scanner(image));
             UI.sleep(200);
         }     
