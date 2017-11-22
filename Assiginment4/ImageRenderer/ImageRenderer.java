@@ -141,22 +141,24 @@ this.renderImageHelper(string2Scanner(image));
 
 
     public void doChallenge() {
-        String fileName = "3-image-fly-comments.ppm";
+        String fileName = UIFileChooser.open("Open file");
         //String fileName = UI.askString("Input name of the file:"); 
         try {
             File file = new File(fileName); 
-            if (formatChecker(file) == 3) {
-                //this.renderImageHelper(new Scanner(file)); 
-                this.commentRemover(file);
-                }else if (formatChecker(file) == 2) {
-                    //                    
+            if (formatChecker(file) == 3) {//normal P3 file
+                this.renderImageHelper(string2Scanner(commentRemover(file)));
+                }else if(formatChecker(file) == 4){//animated P3 file
+                    this.renderAnimatedImageHelper(string2Scanner(commentRemover(file)));
+                }else if (formatChecker(file) == 2) {//WIP:grey scale image  NOTE:Should add another value for animated scale image
+                    //WIP
                 }
+
             
             
-            Scanner scan = new Scanner(file); 
+            //Scanner scan = new Scanner(file); 
 
 
-            this.challengeRender(file); 
+            //this.challengeRender(file); 
         }catch (Exception e) {
             UI.println("File error:" + e); 
             //TODO: handle exception
@@ -168,7 +170,13 @@ this.renderImageHelper(string2Scanner(image));
             Scanner scan = new Scanner(file); 
             String fileHeader = scan.next(); 
             if (fileHeader.equals("P3")) {
+                scan.useDelimiter("P3");
+                scan.next();
+                if (scan.hasNext()) {
+                    return 4;                    
+                }else{
                 return 3; 
+                }
             }else if (fileHeader.equals("P2")) {
                 return 2; 
             }else {
@@ -185,53 +193,44 @@ this.renderImageHelper(string2Scanner(image));
     }
 
 
-    public void commentRemover(File file) {// scan line by line and if found "#" then skip all the line
+    public String commentRemover(File file) {// scan the file line by line and if found "#" then skip all the line
         String image = "";
         String next = "";
         int lineCounter = 0;
+        UI.println("Detecting comments...");
         try {
-            Scanner scan = new Scanner(file);
-            
+            Scanner scan = new Scanner(file);            
                 while (scan.hasNext()) {
                     String line = scan.nextLine();
+                    lineCounter++;
+                    //UI.println("LINE:"+ lineCounter);
                     Scanner lineScanner = new Scanner(line);
-                    //lineCounter++;
                     if (line.contains("#")) {
+                        if (line.startsWith("#")) {
+                            lineScanner.nextLine();                            
+                        }
                         while (lineScanner.hasNext()) {
                             next = lineScanner.next();
                                 if (next.startsWith("#")) {
                                     lineScanner.nextLine();                            
                                 }else{
                                     image = image + next + " ";
-                                }
-                            
-                            
-                        }
-                    }else{image = image + line+" ";}
-                
-                    
+                                }                          
+                            }
+                    }else{
+                        image = image + line+" ";
+                    }
                 }
-                UI.println(image);
-
-                renderImageHelper(string2Scanner(image));
-            
-
-
-    
-                
-                
-                
-                
-            
-            
-        } catch (Exception e) {
+                //UI.println(image);
+                // renderImageHelper(string2Scanner(image));          
+                } catch (Exception e) {
             UI.println("File error:" + e); 
             //TODO: handle exception
         }
 
 
         
-        
+        return image;
     }
 
 
