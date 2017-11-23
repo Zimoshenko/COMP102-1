@@ -240,7 +240,6 @@ public class ClassTimes {
                         output.println("Time: " + startTime + "-" + endTime);
                         output.println("Session: " + type);
                         output.println();
-
                     }
                 }
             }
@@ -253,14 +252,6 @@ public class ClassTimes {
             //TODO: handle exception
             UI.println("File Error:" + e);
         }
-
-
-
-
-
-
-
-
 
         UI.println("=========================");
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
@@ -285,10 +276,59 @@ public class ClassTimes {
         UI.println("=========================");
     }
 
-    public double meanClassLength(String targetRoom) {
-        /*# YOUR CODE HERE */
+    public int timeCalculater(String startTime, String endTime) {
+        int startTimeHour = Integer.parseInt(startTime.substring(0, 2));
+        // UI.println(startTimeHour);
+        int startTimeMinute = Integer.parseInt(startTime.substring(2, 4));
+        // UI.println(startTimeMinute);        
+        int endTimeHour = Integer.parseInt(endTime.substring(0, 2));
+        // UI.println(endTimeHour);
+        int endTimeMinute = Integer.parseInt(endTime.substring(2, 4));
+        // UI.println(endTimeMinute);
+        int time = (endTimeHour - startTimeHour)*60 + (endTimeMinute - startTimeMinute);
+        // UI.println(time);
 
-        return 0.0; // to make it compile
+
+
+        return time;
+    }
+    
+    
+    
+    public double meanClassLength(String targetRoom) {
+        int i = 0;
+        double time = 0;
+        String code, type, day, startTime, endTime, room;
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                code = lineScanner.next();
+                type = lineScanner.next();
+                day = lineScanner.next();
+                startTime = lineScanner.next();
+                endTime = lineScanner.next();
+                room = lineScanner.next();
+                if (room.equals(targetRoom)) {
+                    i++;
+                    time = time + this.timeCalculater(startTime, endTime);
+                }
+            }
+            if (i == 0) {
+                return 0;
+                
+            }
+            double mean = time / i;
+            return mean; 
+            
+        } catch (Exception e) {
+            UI.println("Error:"+e);
+            //TODO: handle exception
+        }
+        /*# YOUR CODE HERE */
+        return 0;
+       
     }
 
     /** Challenge
