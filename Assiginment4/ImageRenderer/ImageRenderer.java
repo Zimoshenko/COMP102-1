@@ -146,11 +146,15 @@ this.renderImageHelper(string2Scanner(image));
         try {
             File file = new File(fileName); 
             if (formatChecker(file) == 3) {//normal P3 file
-                this.renderImageHelper(string2Scanner(commentRemover(file)));
+                //this.renderImageHelper(string2Scanner(commentRemover(file)));
+                this.challengeRender(string2Scanner(commentRemover(file)));
                 }else if(formatChecker(file) == 4){//animated P3 file
                     this.renderAnimatedImageHelper(string2Scanner(commentRemover(file)));
                 }else if (formatChecker(file) == 2) {//WIP:grey scale image  NOTE:Should add another value for animated scale image
+                    this.challengeGreyRender(string2Scanner(commentRemover(file)));
                     //WIP
+                }else if(formatChecker(file) == 1){
+
                 }
 
             
@@ -178,6 +182,7 @@ this.renderImageHelper(string2Scanner(image));
                 return 3; 
                 }
             }else if (fileHeader.equals("P2")) {
+                //scan.useDelimiter("P2");
                 return 2; 
             }else {
                 return 0; 
@@ -197,7 +202,8 @@ this.renderImageHelper(string2Scanner(image));
         String image = "";
         String next = "";
         int lineCounter = 0;
-        UI.println("Detecting comments...");
+        UI.println("Detecting & removing comments...");
+        UI.println("This may take a long time");
         try {
             Scanner scan = new Scanner(file);            
                 while (scan.hasNext()) {
@@ -238,8 +244,74 @@ this.renderImageHelper(string2Scanner(image));
 
 
 
-    public void challengeRender(File file) {
+    public void challengeRender(Scanner sc) {
+        if (sc.next().equals("P3")) {//First string in the file should be "P3"
+        } else {
+            UI.println("File is not a ppm image");
+            return;
+        }
+        //sc.next();
+        int cols = sc.nextInt();
+        int rows = sc.nextInt();
+        int r, g, b, depth,ratio;
+        depth = sc.nextInt(); 
+        ratio = (255/depth);
+
+        int row = 0;
+        int col = 0;
+        int x = 20;
+        int y = 20;
+        int i = 0;
+        /* Render pixels LINE by LINE  */
+        while (row != rows) {
+            while (col != cols) {
+                r = sc.nextInt() * ratio;
+                g = sc.nextInt() * ratio;
+                b = sc.nextInt() * ratio;
+                UI.setColor(colorHelper(r, g, b));
+                UI.fillRect(x + col * PIXEL_SIZE, y + row * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+                col++;
+            }
+            col = 0; //reset col counter to 0 to start a new line
+            row++;
+        }
         
+    }
+
+    public void challengeGreyRender(Scanner sc) {
+        if (sc.next().equals("P2")) {//First string in the file should be "P2"
+        } else {
+            UI.println("File is not a pgm image");
+            return;
+        }
+        //sc.next();
+        int cols = sc.nextInt();
+        int rows = sc.nextInt();
+        int r, g, b, depth, ratio;
+        depth = sc.nextInt();
+        ratio = (255 / depth);
+
+        int row = 0;
+        int col = 0;
+        int x = 20;
+        int y = 20;
+        int i = 0;
+        int greyLevel = 0;
+        /* Render pixels LINE by LINE  */
+        while (row != rows) {
+            while (col != cols) {
+                greyLevel = sc.nextInt();
+                r = g = b = greyLevel * ratio;
+                // g = greyLevel * ratio;
+                // b = sc.nextInt() * ratio;
+                UI.setColor(colorHelper(r, g, b));
+                UI.fillRect(x + col * PIXEL_SIZE, y + row * PIXEL_SIZE, PIXEL_SIZE, PIXEL_SIZE);
+                col++;
+            }
+            col = 0; //reset col counter to 0 to start a new line
+            row++;
+        }
+
     }
 
 }
