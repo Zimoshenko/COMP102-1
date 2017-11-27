@@ -311,6 +311,32 @@ public class ClassTimes {
         UI.printf("\nClasses in %s on %s between %d and %d%n", building, targetDay, targetStart, targetEnd);
         UI.println("=================================");
         /*# YOUR CODE HERE */
+        Set set = new HashSet();
+
+        String code, type, day, room;
+        int startTime, endTime;
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                code = lineScanner.next();
+                type = lineScanner.next();
+                day = lineScanner.next();
+                startTime = lineScanner.nextInt();
+                endTime = lineScanner.nextInt();
+                room = lineScanner.next();
+                if ((room.startsWith(building))&&((startTime>=targetStart)&&(endTime<=targetEnd))) {
+                    set.add(code);
+                }
+            }
+        }
+
+        catch (IOException e) {
+            UI.printf("File Failure %s \n", e);
+        }
+        UI.println(set.toString());
+
 
         UI.println("=========================");
     }
