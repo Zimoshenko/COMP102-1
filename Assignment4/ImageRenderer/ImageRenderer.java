@@ -25,13 +25,8 @@ public static final int PIXEL_SIZE = 2;
         UI.initialise(); 
         UI.addButton("Clear", UI::clearGraphics); 
         UI.addButton("Render (core)", this::doRenderImageCore); 
-<<<<<<< HEAD:Assignment4/ImageRenderer/ImageRenderer.java
-        UI.addButton("Render (compl)", this::doRenderAnimatedImage);
-        UI.addButton("doChallenge", this::doChallenge);
-=======
         UI.addButton("Render (compl)", this::doRenderAnimatedImage); 
         UI.addButton("Render(challenge)", this::doChallenge); 
->>>>>>> 6b418245cd8bf98aa7a850783c5905202977288a:Assiginment4/ImageRenderer/ImageRenderer.java
         UI.addButton("Quit", UI::quit); 
         UI.setWindowSize(850, 700); 
         UI.setDivider(0.0); 
