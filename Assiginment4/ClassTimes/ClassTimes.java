@@ -223,6 +223,7 @@ public class ClassTimes {
             PrintStream output = new PrintStream(new File(fileName));
             output.println("Bookings for room " + targetRoom);
             output.println("----------------------------------");
+
             try {
                 Scanner scan = new Scanner(new File("classdata.txt"));
                 while (scan.hasNext()) {
@@ -239,6 +240,7 @@ public class ClassTimes {
                         output.println("Time: " + startTime + "-" + endTime);
                         output.println("Session: " + type);
                         output.println();
+
                     }
                 }
             }
@@ -251,7 +253,16 @@ public class ClassTimes {
             //TODO: handle exception
             UI.println("File Error:" + e);
         }
-        // UI.println("=========================");
+
+
+
+
+
+
+
+
+
+        UI.println("=========================");
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
         UI.println("=========================");
     }
@@ -276,28 +287,6 @@ public class ClassTimes {
 
     public double meanClassLength(String targetRoom) {
         /*# YOUR CODE HERE */
-
-        try {
-            Scanner scan = new Scanner(new File("classdata.txt"));
-            while (scan.hasNext()) {
-                String line = scan.nextLine();
-                Scanner lineScanner = new Scanner(line);
-                code = lineScanner.next();
-                type = lineScanner.next();
-                day = lineScanner.next();
-                startTime = lineScanner.next();
-                endTime = lineScanner.next();
-                room = lineScanner.next();
-                if ((room.equals(targetRoom))) {
-                    
-                }
-            }
-        }
-
-        catch (IOException e) {
-            UI.printf("File Failure %s \n", e);
-        }
-
 
         return 0.0; // to make it compile
     }

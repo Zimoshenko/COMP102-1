@@ -25,8 +25,7 @@ public static final int PIXEL_SIZE = 2;
         UI.initialise(); 
         UI.addButton("Clear", UI::clearGraphics); 
         UI.addButton("Render (core)", this::doRenderImageCore); 
-        UI.addButton("Render (compl)", this::doRenderAnimatedImage);
-        UI.addButton("doChallenge", this::doChallenge);
+        UI.addButton("Render (compl)", this::doRenderAnimatedImage); 
         UI.addButton("Quit", UI::quit); 
         UI.setWindowSize(850, 700); 
         UI.setDivider(0.0); 
@@ -137,11 +136,6 @@ public static final int PIXEL_SIZE = 2;
     public Scanner string2Scanner(String string) {      
         Scanner scanner = new Scanner(string);
         return scanner;
-    }
-
-    public void doChallenge() {
-
-        
     }
 
 
