@@ -253,25 +253,13 @@ public class ClassTimes {
             //TODO: handle exception
             UI.println("File Error:" + e);
         }
-<<<<<<< HEAD:Assiginment4/ClassTimes/ClassTimes.java
-
-
-
-
-
-
 
 
 
         UI.println("=========================");
-=======
-<<<<<<< HEAD:Assignment4/ClassTimes/ClassTimes.java
-        // UI.println("=========================");
-=======
+
 
         UI.println("=========================");
->>>>>>> 6b418245cd8bf98aa7a850783c5905202977288a:Assiginment4/ClassTimes/ClassTimes.java
->>>>>>> parent of 3c46aba... Revert "Merge branch 'master' of https://github.com/UY114514/COMP102":Assignment4/ClassTimes/ClassTimes.java
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
         UI.println("=========================");
     }
@@ -345,13 +333,8 @@ public class ClassTimes {
             //TODO: handle exception
         }
         /*# YOUR CODE HERE */
-<<<<<<< HEAD:Assignment4/ClassTimes/ClassTimes.java
-
-        return 0.0; // to make it compile
-=======
         return 0;
        
->>>>>>> 6b418245cd8bf98aa7a850783c5905202977288a:Assiginment4/ClassTimes/ClassTimes.java
     }
 
     /** Challenge
