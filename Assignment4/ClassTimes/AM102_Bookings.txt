@@ -1,0 +1,170 @@
+Bookings for room AM102
+----------------------------------
+Course: ALIN201
+Time: 1610-1800
+Session: Tutorial
+
+Course: ASIA208
+Time: 1100-1300
+Session: FilmLect
+
+Course: BIOL113
+Time: 1000-1050
+Session: Tutorial
+
+Course: CHEM303
+Time: 1410-1500
+Session: Tutorial
+
+Course: CHIN101
+Time: 1310-1400
+Session: Tutorial
+
+Course: ECON130
+Time: 1410-1500
+Session: Tutorial
+
+Course: FEDU101
+Time: 1310-1400
+Session: Tutorial
+
+Course: GERM315
+Time: 1410-1500
+Session: Lecture
+
+Course: GERM315
+Time: 1410-1500
+Session: Lecture
+
+Course: GERM315
+Time: 1410-1500
+Session: Lecture
+
+Course: INFO101
+Time: 1000-1050
+Session: Tutorial
+
+Course: JAPA111
+Time: 1000-1050
+Session: Tutorial
+
+Course: JAPA111
+Time: 1200-1250
+Session: Tutorial
+
+Course: LING111
+Time: 1200-1250
+Session: Tutorial
+
+Course: MAOR003
+Time: 1000-1150
+Session: Lecture
+
+Course: MATH141
+Time: 1200-1250
+Session: Tutorial
+
+Course: MATH261
+Time: 1510-1600
+Session: Tutorial
+
+Course: MATH311
+Time: 0900-0950
+Session: Lecture
+
+Course: MATH311
+Time: 0900-0950
+Session: Lecture
+
+Course: MATH335
+Time: 0900-0950
+Session: Lecture
+
+Course: MATH335
+Time: 0900-0950
+Session: Lecture
+
+Course: MATH335
+Time: 0900-0950
+Session: Lecture
+
+Course: MDIA103
+Time: 1510-1600
+Session: Tutorial
+
+Course: PERF134
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF134
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF134
+Time: 1510-1700
+Session: Tutorial
+
+Course: PERF234
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF234
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF234
+Time: 1510-1700
+Session: Tutorial
+
+Course: PERF334
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF334
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF334
+Time: 1510-1700
+Session: Tutorial
+
+Course: PERF434
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF434
+Time: 1510-1700
+Session: Lecture
+
+Course: PERF434
+Time: 1510-1700
+Session: Tutorial
+
+Course: QUAN102
+Time: 1100-1150
+Session: Tutorial
+
+Course: QUAN102
+Time: 1200-1250
+Session: Tutorial
+
+Course: QUAN102
+Time: 1310-1400
+Session: Tutorial
+
+Course: QUAN102
+Time: 1310-1400
+Session: Tutorial
+
+Course: RELI335
+Time: 1000-1150
+Session: Lecture
+
+Course: SOSC215
+Time: 1100-1150
+Session: Tutorial
+
+Course: SOSC315
+Time: 1100-1150
+Session: Tutorial
+
