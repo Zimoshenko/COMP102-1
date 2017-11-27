@@ -253,6 +253,7 @@ public class ClassTimes {
             //TODO: handle exception
             UI.println("File Error:" + e);
         }
+<<<<<<< HEAD:Assiginment4/ClassTimes/ClassTimes.java
 
 
 
@@ -263,6 +264,14 @@ public class ClassTimes {
 
 
         UI.println("=========================");
+=======
+<<<<<<< HEAD:Assignment4/ClassTimes/ClassTimes.java
+        // UI.println("=========================");
+=======
+
+        UI.println("=========================");
+>>>>>>> 6b418245cd8bf98aa7a850783c5905202977288a:Assiginment4/ClassTimes/ClassTimes.java
+>>>>>>> parent of 3c46aba... Revert "Merge branch 'master' of https://github.com/UY114514/COMP102":Assignment4/ClassTimes/ClassTimes.java
         UI.println("Printed to " + targetRoom + "_Bookings.txt");
         UI.println("=========================");
     }
@@ -285,10 +294,64 @@ public class ClassTimes {
         UI.println("=========================");
     }
 
+    public int timeCalculater(String startTime, String endTime) {
+        int startTimeHour = Integer.parseInt(startTime.substring(0, 2));
+        // UI.println(startTimeHour);
+        int startTimeMinute = Integer.parseInt(startTime.substring(2, 4));
+        // UI.println(startTimeMinute);        
+        int endTimeHour = Integer.parseInt(endTime.substring(0, 2));
+        // UI.println(endTimeHour);
+        int endTimeMinute = Integer.parseInt(endTime.substring(2, 4));
+        // UI.println(endTimeMinute);
+        int time = (endTimeHour - startTimeHour)*60 + (endTimeMinute - startTimeMinute);
+        // UI.println(time);
+
+
+
+        return time;
+    }
+    
+    
+    
     public double meanClassLength(String targetRoom) {
+        int i = 0;
+        double time = 0;
+        String code, type, day, startTime, endTime, room;
+        try {
+            Scanner scan = new Scanner(new File("classdata.txt"));
+            while (scan.hasNext()) {
+                String line = scan.nextLine();
+                Scanner lineScanner = new Scanner(line);
+                code = lineScanner.next();
+                type = lineScanner.next();
+                day = lineScanner.next();
+                startTime = lineScanner.next();
+                endTime = lineScanner.next();
+                room = lineScanner.next();
+                if (room.equals(targetRoom)) {
+                    i++;
+                    time = time + this.timeCalculater(startTime, endTime);
+                }
+            }
+            if (i == 0) {
+                return 0;
+                
+            }
+            double mean = time / i;
+            return mean; 
+            
+        } catch (Exception e) {
+            UI.println("Error:"+e);
+            //TODO: handle exception
+        }
         /*# YOUR CODE HERE */
+<<<<<<< HEAD:Assignment4/ClassTimes/ClassTimes.java
 
         return 0.0; // to make it compile
+=======
+        return 0;
+       
+>>>>>>> 6b418245cd8bf98aa7a850783c5905202977288a:Assiginment4/ClassTimes/ClassTimes.java
     }
 
     /** Challenge
