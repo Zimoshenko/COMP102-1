@@ -139,7 +139,10 @@ this.renderImageHelper(string2Scanner(image));
         return scanner; 
     }
 
+    public void doChallenge() {
 
+        
+    }
 
 
     public void doChallenge() {
