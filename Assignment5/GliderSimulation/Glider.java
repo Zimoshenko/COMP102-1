@@ -93,7 +93,7 @@ public class Glider {
             // UI.println("WARNING");
             // UI.println(y+" "+height);
             // UI.println("SPEED"+speed);
-            this.speed = MID_SPEED / 2.0;
+            this.speed = MID_SPEED / 1.5;
             this.x = this.x + this.speed;
             // UI.sleep(1000);
 
@@ -133,6 +133,7 @@ public class Glider {
     /** Change the speed of the glider */
     public void setSpeed(double sp) {
         /*# YOUR CODE HERE */
+        this.speed = sp;
 
     }
 

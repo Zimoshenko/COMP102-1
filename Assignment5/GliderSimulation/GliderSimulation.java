@@ -26,12 +26,14 @@ public class GliderSimulation{
     public GliderSimulation(){
            UI.addButton("Start", this::throwGliders);
            UI.addSlider("Delay", 10, 80, 40, this::setDelay);
+           UI.addButton("Challenge",this::doChallenge);
            UI.addButton("Quit", UI::quit);
            UI.setDivider(0.0); // hide the text area
            this.drawRoom();    // draw the room.
     }
 
     private int delay = 40;
+    private double obstacleX[],obstacleY[];
 
     public void throwGliders(){
            UI.setImmediateRepaint(false);  // makes animation smoother, but needs repaintGraphics().
@@ -87,6 +89,17 @@ public class GliderSimulation{
            UI.eraseRect(0, FLOOR-CEILING-1, RIGHT_WALL-1, CEILING-2);
     }
 
+    public void randomGen(double min,double max){
+        Random random = new Random();
+
+
+    }
+
+    public void placeObstacle() {
+
+
+    }
+
     public void drawRoom(){
            UI.setColor(Color.black);
            UI.fillRect(0, FLOOR, RIGHT_WALL+50, 20);    // the ground
@@ -94,6 +107,49 @@ public class GliderSimulation{
            UI.fillRect(RIGHT_WALL, FLOOR-CEILING, 50, CEILING);    // the wall
            UI.setColor(Color.lightGray);
            UI.fillRect(0, FLOOR-CEILING-12, RIGHT_WALL+50, 12); // the ceiling
+    }
+    public void doChallenge(){
+                   UI.setImmediateRepaint(false);  // makes animation smoother, but needs repaintGraphics().
+
+           while (true) {
+                  Glider gliderA = this.makeNewGlider();
+                  Glider gliderB = this.makeNewGlider();
+                  gliderA.draw();
+                  gliderB.draw();
+
+	    //loop for as long as at least one glider is flying.
+                  while ( gliderA.getHeight()> 0 || gliderB.getHeight()>0 ){
+                         // make each glider move
+                         gliderA.move();
+                         gliderB.move();
+
+                         // redraw the gliders                   
+                         this.clearRoom();   
+                         gliderA.draw();
+                         gliderB.draw();
+                         this.drawRoom();
+                         UI.repaintGraphics();
+
+                         UI.sleep(delay);
+                         // change the speed if the glider gets too high
+                         if (gliderA.getHeight()>= MAX_HEIGHT ){ 
+                                gliderA.setSpeed(Math.random()*4);
+                         }
+                         if (gliderB.getHeight() >= MAX_HEIGHT ){
+                                gliderB.setSpeed(Math.random()*4);
+                         }
+                         // Make the gliders disappear if past right edge 
+                         if (gliderA.getX()>=RIGHT_WALL ){ 
+                                gliderA = this.makeNewGlider();  
+                         }
+                         if (gliderB.getX() >= RIGHT_WALL ){
+                                gliderB = this.makeNewGlider();
+                         }
+                  }
+                  UI.sleep(1000);  //both gliders on floor. Wait 1 second before restarting.
+
+
+
     }
 
     public void setDelay(double v){this.delay = (int)v;}
