@@ -1,0 +1,24 @@
+#BlueJ package file
+objectbench.height=100
+objectbench.width=274
+package.numDependencies=0
+package.numTargets=2
+package.showExtends=true
+package.showUses=true
+project.charset=windows-1252
+target1.height=50
+target1.name=CircuitDrawer
+target1.showInterface=false
+target1.type=ClassTarget
+target1.typeParameters=
+target1.width=100
+target1.x=90
+target1.y=10
+target2.height=50
+target2.name=CircuitDrawerRubberBand
+target2.showInterface=false
+target2.type=ClassTarget
+target2.typeParameters=
+target2.width=170
+target2.x=70
+target2.y=480
