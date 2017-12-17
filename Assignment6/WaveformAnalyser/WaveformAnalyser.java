@@ -54,6 +54,7 @@ public class WaveformAnalyser {
     private int count = 0;
     private double max, min = 0;
     private ArrayList<Double> normalisedWaveform = new ArrayList<Double>();
+    private ArrayList<Integer> peaks = new ArrayList<>();
 
     /**
      * Constructor:
@@ -85,8 +86,8 @@ public class WaveformAnalyser {
      */
     public void doRead() {
         UI.clearPanes();
-//        String fname = UIFileChooser.open();
-        String fname = "waveform2.txt";
+        String fname = UIFileChooser.open();
+//        String fname = "waveform2.txt";//for convenience while working on other parts
         /*# YOUR CODE HERE */
         try {
             this.waveform.clear();//Clear the ArrayList before read to prevent duplicated data
@@ -275,9 +276,9 @@ public class WaveformAnalyser {
         this.doDisplayDistortion(); //use doDisplay if doDisplayDistortion isn't complete
         /*# YOUR CODE HERE */
         int n = 0;
+        this.peaks.clear();
 //        UI.println("Computing");
-        ArrayList<Integer> peaks = new ArrayList<>();
-        while (n < this.waveform.size()) {
+        while (n < this.waveform.size() - 1) {
             if (n < 2) {
                 n++;
                 continue;
@@ -353,7 +354,7 @@ public class WaveformAnalyser {
             UI.println("No waveform to display");
             return;
         }
-        this.doDisplay();  // display the waveform
+        this.doDisplayDistortion();  // display the waveform
         this.upperEnvelope();
         this.lowerEnvelope();
     }
@@ -364,8 +365,76 @@ public class WaveformAnalyser {
      * A peak is defined as a point that is greater or equal to *both* neighbouring points.
      * DO NOT clear the graphics as we also want to view the waveform.
      */
+
+
+    public void getPeaks(boolean negative) {
+        int n = 0;
+        this.peaks.clear();
+//        UI.println("Computing");
+        if (negative) {
+            while (n <= this.waveform.size()) {
+                if (n < 2) {
+                    n++;
+                    continue;
+                }
+                if (n == (this.waveform.size() - 1)) {
+                    break;
+                }
+                if (this.waveform.get(n) < 0) {
+
+                    if ((this.waveform.get(n)) < this.waveform.get(n - 1)) {
+//                    UI.println(n);
+//                    UI.println("<");
+                        if (this.waveform.get(n) < this.waveform.get(n + 1)) {
+//                        UI.println("<<");
+                            peaks.add(n);
+                        }
+                    }
+                }
+                n++;
+            }
+        } else {
+            while (n < this.waveform.size()) {
+                if (n < 2) {
+                    n++;
+                    continue;
+                }
+                if (n == (this.waveform.size() - 1)) {
+                    break;
+                }
+                if (this.waveform.get(n) > 0) {
+
+                    if ((this.waveform.get(n)) > this.waveform.get(n - 1)) {
+                        if (this.waveform.get(n) > this.waveform.get(n + 1)) {
+                            peaks.add(n);
+                        }
+                    }
+                }
+                n++;
+            }
+        }
+//        UI.println(peaks);
+    }
+
     public void upperEnvelope() {
         /*# YOUR CODE HERE */
+//        this.doDisplayDistortion();
+        this.getPeaks(false);
+        boolean firstTime = true;
+        int lastNum = 0;
+        UI.setColor(Color.pink);
+
+        for (int num : this.peaks) {
+            if (firstTime) {
+                firstTime = false;
+                lastNum = num;
+                continue;
+            }
+            UI.drawLine(GRAPH_LEFT + num, ZERO_LINE - this.waveform.get(num), GRAPH_LEFT + lastNum, ZERO_LINE - this.waveform.get(lastNum));
+            lastNum = num;
+        }
+
+
     }
 
     /**
@@ -376,6 +445,23 @@ public class WaveformAnalyser {
      */
     public void lowerEnvelope() {
         /*# YOUR CODE HERE */
+//        this.doDisplayDistortion();
+        getPeaks(true);
+        boolean firstTime = true;
+        int lastNum = 0;
+        UI.setColor(Color.pink);
+
+        for (int num : this.peaks) {
+            if (firstTime) {
+                firstTime = false;
+                lastNum = num;
+                continue;
+            }
+
+            UI.drawLine(GRAPH_LEFT + num, ZERO_LINE - this.waveform.get(num), GRAPH_LEFT + lastNum, ZERO_LINE - this.waveform.get(lastNum));
+
+            lastNum = num;
+        }
 
     }
 
@@ -385,6 +471,17 @@ public class WaveformAnalyser {
      */
     public void doSave() {
         /*# YOUR CODE HERE */
+        try {
+            PrintStream output = new PrintStream(new File(UIFileChooser.save("Save the current waveform")));
+
+            for (double num : waveform) {
+                output.println(num);
+            }
+
+        } catch (IOException e) {
+            UI.println("Save Error:" + e);
+        }
+
 
     }
 
