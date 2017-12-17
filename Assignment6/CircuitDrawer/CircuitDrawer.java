@@ -9,7 +9,6 @@
 
 import ecs100.*;
 import java.awt.Color;
-
 public class CircuitDrawer{
 
     // fields to store data:
@@ -39,6 +38,7 @@ public class CircuitDrawer{
     public void doSetResistor(){
         /*# YOUR CODE HERE */
 
+
     }
     /* Respond to the wire button */
     public void doSetWire(){
@@ -48,6 +48,7 @@ public class CircuitDrawer{
     /* Respond to the capacitor button */
     public void doSetCapacitor(){
         /*# YOUR CODE HERE */
+
 
     }
     /* Respond to the source button */

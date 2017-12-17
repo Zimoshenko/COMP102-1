@@ -52,6 +52,8 @@ public class Glider {
         //    this.y = 400 - ht;
         this.x = 0;
 
+
+
     }
 
     // Methods
@@ -153,6 +155,7 @@ public class Glider {
         UI.drawRect(0, FLOOR - tooHigh, tooFar, tooHigh);
 
         glider.draw();
+
 
         UI.println("Moving the glider.");
 
