@@ -50,6 +50,8 @@ public class WaveformAnalyser {
 
     // Constant fields holding the size of the circles for the highlightPeaks method
     public static final int SIZE_CIRCLE = 10;
+    //for future use
+    private int count = 0;
 
     /**
      * Constructor:
@@ -115,7 +117,7 @@ public class WaveformAnalyser {
      * Don't worry if the lines go off the window
      */
     public void doDisplay() {
-        if (this.waveform == null) { //there is no data to display
+        if (this.waveform.isEmpty()) { //there is no data to display
             UI.println("No waveform to display");
             return;
         }
@@ -149,7 +151,7 @@ public class WaveformAnalyser {
      * [Hint] You may find Math.abs() useful for this method - it computes the absolute value
      */
     public void doReportDistortion() {
-        if (this.waveform == null) { //there is no data to analyse
+        if (this.waveform.isEmpty()) { //there is no data to analyse
             UI.println("No signal to analyse and report on");
             return;
         }
@@ -176,7 +178,7 @@ public class WaveformAnalyser {
      * one red line for the minimum value.
      */
     public void doSpread() {
-        if (this.waveform == null) { //there is no data to display
+        if (this.waveform.isEmpty()) { //there is no data to display
             UI.println("No waveform to display");
             return;
         }
@@ -192,15 +194,13 @@ public class WaveformAnalyser {
             }
             if (num < min) {
                 min = num;
-                continue;
-
             }
-
         }
 //        UI.println("min" + min);
 //        UI.println("max" + max);
         UI.setColor(Color.green);
         UI.drawLine(GRAPH_LEFT, ZERO_LINE - max, GRAPH_LEFT + this.waveform.size(), ZERO_LINE - max);
+        UI.setColor(Color.red);
         UI.drawLine(GRAPH_LEFT, ZERO_LINE - min, GRAPH_LEFT + this.waveform.size(), ZERO_LINE - min);
 
     }
@@ -218,7 +218,7 @@ public class WaveformAnalyser {
      * You may assume that all the values are between -250 and +250.
      */
     public void doDisplayDistortion() {
-        if (this.waveform == null) { //there is no data to display
+        if (this.waveform.isEmpty()) { //there is no data to display
             UI.println("No waveform to display");
             return;
         }
@@ -230,6 +230,32 @@ public class WaveformAnalyser {
 
         // draw thresholds
         /*# YOUR CODE HERE */
+        UI.setColor(Color.green);
+        UI.drawLine(GRAPH_LEFT, ZERO_LINE - THRESHOLD, GRAPH_LEFT + this.waveform.size(), ZERO_LINE - THRESHOLD);
+        UI.drawLine(GRAPH_LEFT, ZERO_LINE + THRESHOLD, GRAPH_LEFT + this.waveform.size(), ZERO_LINE + THRESHOLD);
+
+
+        /*for future use*/
+
+
+
+        /*draw waves*/
+        UI.setColor(Color.black);
+        int n = 0;
+        int _n = 0;
+        double current, last = 0;
+        for (double num : this.waveform) {
+            current = num;
+            if ((Math.abs(current) > THRESHOLD) || (Math.abs(last) > THRESHOLD)) {//color will be read either current or last is bigger than THRESHOLD
+                UI.setColor(Color.red);
+            } else {
+                UI.setColor(Color.blue);
+            }
+            UI.drawLine((GRAPH_LEFT + n), ZERO_LINE - current, (GRAPH_LEFT + _n), ZERO_LINE - last);
+            last = current;
+            _n = n;
+            n++;
+        }
 
     }
 
@@ -244,6 +270,28 @@ public class WaveformAnalyser {
     public void doHighlightPeaks() {
         this.doDisplayDistortion(); //use doDisplay if doDisplayDistortion isn't complete
         /*# YOUR CODE HERE */
+        int n = 0;
+//        UI.println("Computing");
+        ArrayList<Integer> peaks = new ArrayList<>();
+        while (n < this.waveform.size()) {
+            if (n < 2) {
+                n++;
+                continue;
+            }
+            if ((this.waveform.get(n)) > this.waveform.get(n - 1)) {
+                if (this.waveform.get(n) > this.waveform.get(n + 1)) {
+                    peaks.add(n);
+                }
+            }
+            n++;
+        }
+
+        //draw circles
+        for (int num : peaks) {
+            UI.setColor(Color.green);
+            UI.drawOval(GRAPH_LEFT + num - SIZE_CIRCLE / 2, ZERO_LINE - this.waveform.get(num) - SIZE_CIRCLE / 2, SIZE_CIRCLE, SIZE_CIRCLE);
+        }
+
 
     }
 
@@ -261,7 +309,7 @@ public class WaveformAnalyser {
     }
 
     public void doEnvelope() {
-        if (this.waveform == null) { //there is no data to display
+        if (this.waveform.isEmpty()) { //there is no data to display
             UI.println("No waveform to display");
             return;
         }
