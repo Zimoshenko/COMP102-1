@@ -52,6 +52,8 @@ public class WaveformAnalyser {
     public static final int SIZE_CIRCLE = 10;
     //for future use
     private int count = 0;
+    private double max, min = 0;
+    private ArrayList<Double> normalisedWaveform = new ArrayList<Double>();
 
     /**
      * Constructor:
@@ -95,6 +97,8 @@ public class WaveformAnalyser {
             }
 
             UI.println("Read " + this.waveform.size() + " data points from " + fname);
+
+            scanner.close();
 
         } catch (IOException e) {
             UI.println("ERROR:" + e);
@@ -304,6 +308,42 @@ public class WaveformAnalyser {
      */
     public void doNormalise() {
         /*# YOUR CODE HERE */
+        this.normalisedWaveform.clear();
+
+        double ratio = 1;
+
+
+        //get max&min value
+        double max = MIN_VALUE;
+        double min = MAX_VALUE;
+
+        for (double num : this.waveform) {
+            if (num > max) {
+                max = num;
+                continue;
+            }
+            if (num < min) {
+                min = num;
+            }
+        }
+
+        min = Math.abs(min);
+        max = Math.abs(max);
+
+        if (min > max) {
+            max = min;
+        }
+
+        ratio = max / THRESHOLD;
+
+        //normalise
+        for (double num : waveform) {
+            this.normalisedWaveform.add(num / ratio);
+        }
+
+        this.waveform.clear();
+        this.waveform.addAll(normalisedWaveform);
+
 
         this.doDisplayDistortion(); //use doDisplay if doDisplayDistortion isn't complete
     }
