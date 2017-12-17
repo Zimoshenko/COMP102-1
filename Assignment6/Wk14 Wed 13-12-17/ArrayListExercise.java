@@ -82,8 +82,6 @@ public class ArrayListExercise{
         for (double num : nums){
             UI.fillRect(x, base-num, 25, num);
             x = x+26;
-            x
-
 
 
         }
