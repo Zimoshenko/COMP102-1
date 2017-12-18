@@ -120,45 +120,20 @@ public class CircuitDrawer {
             this.y = y;
         }
         if (this.operation.equals("Resistor")) {
-            //TODO:Draw Resistor
-            //TODO:Horiz/Vert mode
-
-            if (horizontalMode) {
-
-            } else {
-
-            }
-
-
+            this.drawResistor(x, y);
         } else if (this.operation.equals("Wire")) {
-            //TODO:Draw Wire
+            this.drawWire(x, y);
+
         } else if (this.operation.equals("Capacitor")) {
-            //TODO:Draw Capacitor
+            this.drawCapacitor(x, y);
 
-
-            if (horizontalMode) {
-
-            } else {
-
-            }
         } else if (this.operation.equals("Source")) {
-            //TODO:Draw Source
-
-            if (horizontalMode) {
-
-            } else {
-
-            }
+            this.drawSource(x, y);
         } else if (this.operation.equals("Eraser")) {
-            //TODO:Eraser
+            this.doErase(x, y);
         } else if (this.operation.equals("Label")) {
-            //TODO:Draw Label
+            this.drawLabel(x, y);
 
-            if (horizontalMode) {
-
-            } else {
-
-            }
         }
 
 
@@ -177,6 +152,14 @@ public class CircuitDrawer {
         double stub = 10;      // the length of the wires on each end
         /*# YOUR CODE HERE */
 
+
+        //TODO:Draw Resistor
+        if (horizontalMode) {//TODO:Horiz/Vert mode
+
+        } else {
+
+        }
+
     }
 
     /**
@@ -187,6 +170,7 @@ public class CircuitDrawer {
      */
     public void drawWire(double x, double y) {
         /*# YOUR CODE HERE */
+        //TODO:Draw Wire
 
     }
 
@@ -201,6 +185,14 @@ public class CircuitDrawer {
      */
     public void drawCapacitor(double x, double y) {
         /*# YOUR CODE HERE */
+        //TODO:Draw Capacitor
+
+
+        if (horizontalMode) {
+
+        } else {
+
+        }
 
     }
 
@@ -212,6 +204,13 @@ public class CircuitDrawer {
      */
     public void drawSource(double x, double y) {
         /*# YOUR CODE HERE */
+        //TODO:Draw Source
+
+        if (horizontalMode) {
+
+        } else {
+
+        }
 
     }
 
@@ -222,7 +221,7 @@ public class CircuitDrawer {
      */
     public void doErase(double x, double y) {
         /*# YOUR CODE HERE */
-
+        //TODO:Eraser
     }
 
 
@@ -233,6 +232,13 @@ public class CircuitDrawer {
      */
     public void drawLabel(double x, double y) {
         /*# YOUR CODE HERE */
+        //TODO:Draw Label
+
+        if (horizontalMode) {
+
+        } else {
+
+        }
 
     }
 
