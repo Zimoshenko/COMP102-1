@@ -1,11 +1,19 @@
 #BlueJ package file
-objectbench.height=76
+objectbench.height=100
 objectbench.width=686
+package.editor.height=400
+package.editor.width=893
+package.editor.x=375
+package.editor.y=444
 package.numDependencies=0
 package.numTargets=1
 package.showExtends=true
 package.showUses=true
 project.charset=UTF-8
+target1.editor.height=817
+target1.editor.width=900
+target1.editor.x=815
+target1.editor.y=155
 target1.height=50
 target1.name=WaveformAnalyser
 target1.naviview.expanded=true

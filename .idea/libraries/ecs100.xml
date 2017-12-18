@@ -2,10 +2,12 @@
   <library name="ecs100">
     <CLASSES>
       <root url="jar://$PROJECT_DIR$/ecs100.jar!/" />
+      <root url="jar://$USER_HOME$/OneDrive/Google Drive/XMUT/COMP102/bluej317-standalone/BlueJ/lib/userlib/ecs100.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
       <root url="jar://$PROJECT_DIR$/ecs100.jar!/" />
+      <root url="jar://$USER_HOME$/OneDrive/Google Drive/XMUT/COMP102/bluej317-standalone/BlueJ/lib/userlib/ecs100.jar!/" />
     </SOURCES>
   </library>
 </component>
