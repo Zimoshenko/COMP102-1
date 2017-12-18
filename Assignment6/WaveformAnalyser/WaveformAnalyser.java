@@ -478,6 +478,8 @@ public class WaveformAnalyser {
                 output.println(num);
             }
 
+            output.close();
+
         } catch (IOException e) {
             UI.println("Save Error:" + e);
         }
