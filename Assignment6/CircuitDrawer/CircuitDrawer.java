@@ -8,8 +8,10 @@
  */
 
 import ecs100.*;
+
 import java.awt.Color;
-public class CircuitDrawer{
+
+public class CircuitDrawer {
 
     // fields to store data:
     //  - the tool that the user has selected (which control what component will be
@@ -17,53 +19,72 @@ public class CircuitDrawer{
     //    The tools are "resistor", "wire", "capacitor", "source", "label", or "eraser"
     //  - the mode: whether the component should be horizontal or vertical
     //  - the contents of the label
-    //  - the position the mouse was pressed, 
+    //  - the position the mouse was pressed,
     /*# YOUR CODE HERE */
-
+    private double x, y;
+    private String operation;
+    private boolean horizontalMode = true;
 
     //Constructor
-    /** Sets up the user interface - mouselistener, buttons, and (completion only) textField */
-    public CircuitDrawer(){
-        UI.setMouseListener( this::doMouse );
-        UI.addButton("Clear", UI::clearGraphics); 
+
+    /**
+     * Sets up the user interface - mouselistener, buttons, and (completion only) textField
+     */
+    public CircuitDrawer() {
+        UI.setMouseListener(this::doMouse);
+        UI.addButton("Clear", UI::clearGraphics);
         /*# YOUR CODE HERE */
 
         UI.addButton("Quit", UI::quit);
+
         UI.setDivider(0.0);  // Hide the text area.
     }
 
     // Methods to change the tool that controls will be drawn next
     // These methods just save information to the fields.
     /* Respond to the resistor button */
-    public void doSetResistor(){
+    public void doSetResistor() {
         /*# YOUR CODE HERE */
+        this.operation = "Resistor";
 
 
     }
+
     /* Respond to the wire button */
-    public void doSetWire(){
+    public void doSetWire() {
         /*# YOUR CODE HERE */
+        this.operation = "Wire";
 
     }
+
     /* Respond to the capacitor button */
-    public void doSetCapacitor(){
+    public void doSetCapacitor() {
         /*# YOUR CODE HERE */
+        this.operation = "Capacitor";
 
 
     }
+
     /* Respond to the source button */
-    public void doSetSource(){
+    public void doSetSource() {
         /*# YOUR CODE HERE */
+        this.operation = "Source";
 
     }
+
     /* Respond to the eraser button */
-    public void doSetEraser(){
+    public void doSetEraser() {
         /*# YOUR CODE HERE */
+        this.operation = "Eraser";
 
     }
-    /** Respond to the text field (completion only) */
-    public void doSetLabel(String v){
+
+    /**
+     * Respond to the text field (completion only)
+     */
+    public void doSetLabel(String v) {
         /*# YOUR CODE HERE */
+        this.operation = "Label";
     }
 
     /**
@@ -73,8 +94,13 @@ public class CircuitDrawer{
      * eg by drawing a horizonal/vertical bar in the top left corner,
      * or by calling setText on the button to change the label
      */
-    public void doSwitchDirection(){
+    public void doSwitchDirection() {
         /*# YOUR CODE HERE */
+        if (this.horizontalMode = true) {
+            this.horizontalMode = false;
+        } else {
+            this.horizontalMode = true;
+        }
 
     }
 
@@ -84,14 +110,59 @@ public class CircuitDrawer{
      * When pressed, remember the position.
      * When released, draw what is specified by current tool
      * Uses the value stored in the field to determine which kind of component to draw (or to erase)
-     *  It should call the drawWire, drawResistor, drawCapacitor, drawSource, drawLabel, 
-     *  or doErase, methods passing the x and y where the mouse was released.
+     * It should call the drawWire, drawResistor, drawCapacitor, drawSource, drawLabel,
+     * or doErase, methods passing the x and y where the mouse was released.
      */
     public void doMouse(String action, double x, double y) {
         /*# YOUR CODE HERE */
-        
-    }
+        if (action.equals("released")) {
+            this.x = x;
+            this.y = y;
+        }
+        if (this.operation.equals("Resistor")) {
+            //TODO:Draw Resistor
+            //TODO:Horiz/Vert mode
 
+            if (horizontalMode) {
+
+            } else {
+
+            }
+
+
+        } else if (this.operation.equals("Wire")) {
+            //TODO:Draw Wire
+        } else if (this.operation.equals("Capacitor")) {
+            //TODO:Draw Capacitor
+
+
+            if (horizontalMode) {
+
+            } else {
+
+            }
+        } else if (this.operation.equals("Source")) {
+            //TODO:Draw Source
+
+            if (horizontalMode) {
+
+            } else {
+
+            }
+        } else if (this.operation.equals("Eraser")) {
+            //TODO:Eraser
+        } else if (this.operation.equals("Label")) {
+            //TODO:Draw Label
+
+            if (horizontalMode) {
+
+            } else {
+
+            }
+        }
+
+
+    }
 
 
     /**
@@ -100,7 +171,7 @@ public class CircuitDrawer{
      * Core: only horizontal required
      * Completion: horizontal or vertical depending on the mode.
      */
-    public void drawResistor(double x, double y){
+    public void drawResistor(double x, double y) {
         double length = 31;    // size in the longer  dimension
         double width = 11;     // size in the shorter dimension 
         double stub = 10;      // the length of the wires on each end
@@ -114,7 +185,7 @@ public class CircuitDrawer{
      * Completion: The wire should have a horizontal part followed by a vertical part
      * If the distance between the two points is very small, it just puts a circle at (x y)
      */
-    public void drawWire(double x, double y){
+    public void drawWire(double x, double y) {
         /*# YOUR CODE HERE */
 
     }
@@ -122,24 +193,24 @@ public class CircuitDrawer{
 
     /**
      * Draw a capacitor centered at the point x, y.
-     *  (Two parallel lines with wires on each side)
+     * (Two parallel lines with wires on each side)
      * HINT: draw a line for the wires, then draw a black rectangle, then
-     *       fill a white rectangle that is narrower but longer.
+     * fill a white rectangle that is narrower but longer.
      * Core: only horizontal required
      * Completion: horizontal or a vertical, depending on the mode.
      */
-    public void drawCapacitor(double x, double y){
+    public void drawCapacitor(double x, double y) {
         /*# YOUR CODE HERE */
 
     }
 
     /**
      * Draw a source centered at the point x, y.
-     *  (Circle with wires on each side)
+     * (Circle with wires on each side)
      * Core: only horizontal required
      * Completion: horizontal or vertical, depending on the mode.
      */
-    public void drawSource(double x, double y){
+    public void drawSource(double x, double y) {
         /*# YOUR CODE HERE */
 
     }
@@ -149,7 +220,7 @@ public class CircuitDrawer{
      * Erase a circular region around the position x, y
      * Should be big enough to erase a single component.
      */
-    public void doErase(double x, double y){
+    public void doErase(double x, double y) {
         /*# YOUR CODE HERE */
 
     }
@@ -160,15 +231,15 @@ public class CircuitDrawer{
      * Uses the label that was stored in a field.
      * Completion only.
      */
-    public void drawLabel(double x, double y){
+    public void drawLabel(double x, double y) {
         /*# YOUR CODE HERE */
 
     }
 
 
     // Main:  constructs a new CircuitDrawer object
-    public static void main(String[] arguments){
+    public static void main(String[] arguments) {
         new CircuitDrawer();
-    }   
+    }
 
 }
